@@ -16,7 +16,8 @@
   "scripts": {
     "start": "cross-env CLIENT_ENV=development craco start",
     "prod": "cross-env CLIENT_ENV=production craco start",
-    "build": "cross-env CLIENT_ENV=production craco build"
+    "build": "cross-env CLIENT_ENV=production craco build",
+    "generate": "node ./tools/generate.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@craco/craco": "5.3.0",
-    "cross-env": "5.2.0"
+    "cross-env": "5.2.0",
+    "generate-template-files": "2.2.0"
   }
 }
