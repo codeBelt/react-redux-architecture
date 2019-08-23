@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import styles from './App.module.scss';
+import environment from 'environment';
+
+console.log(`environment`, environment);
 
 const App: React.FC = () => {
     return (
