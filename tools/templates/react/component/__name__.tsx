@@ -7,9 +7,9 @@ interface IState {}
 
 export default class __name__ extends React.Component<IProps, IState> {
 
-    public static defaultProps: Partial<IProps> = {};
+    // public static defaultProps: Partial<IProps> = {};
 
-    public state: IState = {};
+    // public state: IState = {};
 
     public render(): JSX.Element {
         return (

@@ -9,11 +9,7 @@ import rootReducer from './rootReducer';
 import IStore from '../models/IStore';
 
 export default (initialState: Partial<IStore>, history: History): Store<IStore> => {
-  const middleware: Middleware[] = [
-    environment.isDevelopment ? reduxFreeze : null!,
-    routerMiddleware(history),
-    thunk,
-  ].filter(Boolean);
+  const middleware: Middleware[] = [environment.isDevelopment ? reduxFreeze : null!, routerMiddleware(history), thunk].filter(Boolean);
 
   const store: Store<IStore> = createStore(rootReducer(history), initialState, composeWithDevTools(applyMiddleware(...middleware)));
 

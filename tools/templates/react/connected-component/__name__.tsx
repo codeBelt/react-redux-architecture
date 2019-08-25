@@ -11,6 +11,10 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({})
 
 class __name__ extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
+  // public static defaultProps: Partial<IProps> = {};
+
+  // public state: IState = {};
+
     public render(): JSX.Element {
         return (
             <div className={styles.wrapper}>

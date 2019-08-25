@@ -3,7 +3,7 @@
  * Add everything here and override value in other files if needed.
  */
 
-export default function (baseApi: string) {
+export default function(baseApi: string) {
   return {
     api: {
       shows: `${baseApi}/shows/{showId}`,
@@ -12,4 +12,4 @@ export default function (baseApi: string) {
     isProduction: true,
     isDevelopment: false,
   };
-};
+}
