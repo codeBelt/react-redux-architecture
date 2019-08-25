@@ -5,6 +5,7 @@ import { connect, DispatchProp } from 'react-redux';
 import IAction from '../../models/IAction';
 import IStore from '../../models/IStore';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import ShowAction from '../../stores/show/ShowAction';
 
 const CardExampleCard = () => (
   <Card>
@@ -32,6 +33,12 @@ interface IStateToProps {}
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({});
 
 class HomePage extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+  public componentDidMount(): void {
+    this.props.dispatch(ShowAction.requestShow());
+    this.props.dispatch(ShowAction.requestEpisodes());
+    this.props.dispatch(ShowAction.requestCast());
+  }
+
   public render(): JSX.Element {
     return (
       <div className={styles.wrapper}>

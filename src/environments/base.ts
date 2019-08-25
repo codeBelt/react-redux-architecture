@@ -8,6 +8,7 @@ export default function(baseApi: string) {
     api: {
       shows: `${baseApi}/shows/{showId}`,
       episodes: `${baseApi}/shows/{showId}/episodes`,
+      cast: `${baseApi}/shows/{showId}/cast`,
     },
     isProduction: true,
     isDevelopment: false,

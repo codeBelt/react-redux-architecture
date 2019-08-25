@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import IAction from '../models/IAction';
 import RouteEnum from '../constants/RouteEnum';
+import MainNav from './components/main-nav/MainNav';
 
 const HomePage = lazy(() => import('./home-page/HomePage'));
 const NotFoundPage = lazy(() => import('./not-found-page/NotFoundPage'));
@@ -20,6 +21,7 @@ export default class App extends React.Component<IProps, IState> {
     return (
       <ConnectedRouter history={this.props.history}>
         <Suspense fallback={<div>Loading...</div>}>
+          <MainNav />
           <Switch>
             <Route exact={true} path={RouteEnum.Home} component={HomePage} />
             <Route component={NotFoundPage} />
