@@ -1,3 +1,5 @@
+declare module 'redux-freeze';
+
 declare module 'environment' {
   const value: {
     api: {

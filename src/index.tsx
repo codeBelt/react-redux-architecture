@@ -1,12 +1,29 @@
+import './index.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Store } from 'redux';
+import { Provider } from 'react-redux';
+import { createBrowserHistory, History } from 'history';
+import IStore from './models/IStore';
+import rootStore from './stores/rootStore';
+import App from './views/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+(async (window: Window) => {
+  const initialState: Partial<IStore> = {};
+  const history: History = createBrowserHistory();
+  const store: Store<IStore> = rootStore(initialState, history);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  const rootEl: HTMLElement | null = document.getElementById('root');
+
+  const render = (Component: any, el: HTMLElement | null) => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <Component history={history} dispatch={store.dispatch} />
+      </Provider>,
+      el
+    );
+  };
+
+  render(App, rootEl);
+})(window);

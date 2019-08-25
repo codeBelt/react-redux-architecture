@@ -1,0 +1,31 @@
+import React, { Suspense, lazy } from 'react';
+import { History } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch } from 'react-router-dom';
+import { Dispatch } from 'redux';
+import IAction from '../models/IAction';
+import RouteEnum from '../constants/RouteEnum';
+
+const HomePage = lazy(() => import('./home-page/HomePage'));
+const NotFoundPage = lazy(() => import('./not-found-page/NotFoundPage'));
+
+interface IProps {
+  readonly history: History;
+  readonly dispatch: Dispatch<IAction<any>>;
+}
+interface IState {}
+
+export default class App extends React.Component<IProps, IState> {
+  public render(): JSX.Element {
+    return (
+      <ConnectedRouter history={this.props.history}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact={true} path={RouteEnum.Home} component={HomePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Suspense>
+      </ConnectedRouter>
+    );
+  }
+}
