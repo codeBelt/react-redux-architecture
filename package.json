@@ -2,6 +2,35 @@
   "name": "react-typescript",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "post-commit": "git update-index -g"
+    }
+  },
+  "scripts": {
+    "start": "cross-env CLIENT_ENV=development craco start",
+    "prod": "cross-env CLIENT_ENV=production craco start",
+    "build": "cross-env CLIENT_ENV=production craco build",
+    "generate": "node ./tools/generate.js",
+    "lint": "tslint --project . --config tslint.json",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@types/jest": "24.0.18",
     "@types/node": "12.7.2",
@@ -22,27 +51,6 @@
     "typescript": "3.5.3",
     "uuid": "3.3.3"
   },
-  "scripts": {
-    "start": "cross-env CLIENT_ENV=development craco start",
-    "prod": "cross-env CLIENT_ENV=production craco start",
-    "build": "cross-env CLIENT_ENV=production craco build",
-    "generate": "node ./tools/generate.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@craco/craco": "5.3.0",
     "@types/history": "4.7.3",
@@ -50,6 +58,12 @@
     "@types/react-router-dom": "4.3.5",
     "@types/uuid": "3.4.5",
     "cross-env": "5.2.0",
-    "generate-template-files": "2.2.0"
+    "generate-template-files": "2.2.0",
+    "husky": "3.0.4",
+    "lint": "0.7.0",
+    "pretty-quick": "1.11.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint-react": "4.0.0"
   }
 }
