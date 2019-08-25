@@ -48,6 +48,8 @@
     "redux-devtools-extension": "2.13.8",
     "redux-freeze": "0.1.7",
     "redux-thunk": "2.3.0",
+    "semantic-ui-css": "2.4.1",
+    "semantic-ui-react": "0.88.0",
     "typescript": "3.5.3",
     "uuid": "3.3.3"
   },
