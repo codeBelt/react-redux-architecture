@@ -4,25 +4,25 @@ import __store__Effect from './__store__Effect';
 export type __store__ActionUnion = void | HttpErrorResponseModel | __model__ResponseModel;
 
 export default class __store__Action {
-    public static readonly REQUEST___model__(constantCase): string = '__store__Action.REQUEST___model__(constantCase)';
-    public static readonly REQUEST___model__(constantCase)_FINISHED: string = '__store__Action.REQUEST___model__(constantCase)_FINISHED';
+  public static readonly REQUEST___model__(constantCase): string = '__store__Action.REQUEST___model__(constantCase)';
+  public static readonly REQUEST___model__(constantCase)_FINISHED: string = '__store__Action.REQUEST___model__(constantCase)_FINISHED';
 
-    public static request__model__(): any {
-        return async (dispatch, getState) => {
-            dispatch({type: __store__Action.REQUEST___model__(constantCase)});
+  public static request__model__(): any {
+    return ActionUtility.createThunkEffect<__model__ResponseModel>(__store__Action.REQUEST___model__(constantCase), __store__Effects.request__model__);
+  }
 
-            const model: __model__ResponseModel | HttpErrorResponseModel = await __store__Effect.request__model__();
+  public static request__model__Alt(): any {
+    return async (dispatch: ReduxDispatch<__store__ActionUnion>, getState: () => IStore) => {
+      dispatch({type: __store__Action.REQUEST___model__(constantCase)});
 
-            dispatch(__store__Action.request__model__Finished(model));
-        };
-    }
+      const model: __model__ResponseModel | HttpErrorResponseModel = await __store__Effects.request__model__();
 
-    public static request__model__Finished(model: __model__ResponseModel | HttpErrorResponseModel): IAction<__model__ResponseModel | HttpErrorResponseModel> {
-        return {
-            type: __store__Action.REQUEST___model__(constantCase)_FINISHED,
-            payload: model,
-            error: model instanceof HttpErrorResponseModel,
-        };
-    }
+      dispatch({
+        type: __store__Action.REQUEST___model__(constantCase)_FINISHED,
+        payload: model,
+        error: model instanceof HttpErrorResponseModel,
+      });
+    };
+  }
 
 }

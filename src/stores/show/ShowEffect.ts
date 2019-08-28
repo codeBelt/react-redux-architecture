@@ -6,10 +6,9 @@ import HttpUtility from '../../utilities/HttpUtility';
 
 export default class ShowEffect {
   private static _http = new HttpUtility();
-  private static _showId: string = '74';
 
-  public static async requestShow(): Promise<ShowResponseModel | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.shows.replace('{showId}', ShowEffect._showId);
+  public static async requestShow(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+    const endpoint: string = environment.api.shows.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
@@ -20,8 +19,8 @@ export default class ShowEffect {
     // return new ShowResponseModel(response.data);
   }
 
-  public static async requestEpisodes(): Promise<ShowResponseModel | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.episodes.replace('{showId}', ShowEffect._showId);
+  public static async requestEpisodes(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+    const endpoint: string = environment.api.episodes.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
@@ -32,8 +31,8 @@ export default class ShowEffect {
     // return new ShowResponseModel(response.data);
   }
 
-  public static async requestCast(): Promise<ShowResponseModel | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.cast.replace('{showId}', ShowEffect._showId);
+  public static async requestCast(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+    const endpoint: string = environment.api.cast.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
     if (response instanceof HttpErrorResponseModel) {

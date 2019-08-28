@@ -15,13 +15,13 @@ class __name__ extends React.Component<IProps & IStateToProps & DispatchProp<IAc
 
   // public state: IState = {};
 
-    public render(): JSX.Element {
-        return (
-            <div className={styles.wrapper}>
-                __name__(sentenceCase)
-            </div>
-        );
-    }
+  public render(): JSX.Element {
+    return (
+      <div className={styles.wrapper}>
+        __name__(sentenceCase)
+      </div>
+    );
+  }
 
 }
 
