@@ -1,9 +1,11 @@
-import ShowResponseModel from './models/show/ShowResponseModel';
 import ShowEffect from './ShowEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ActionUtility from '../../utilities/ActionUtility';
+import ShowModel from './models/ShowModel';
+import EpisodeModel from './models/EpisodeModel';
+import CastModel from './models/CastModel';
 
-export type ShowActionUnion = HttpErrorResponseModel | ShowResponseModel;
+export type ShowActionUnion = HttpErrorResponseModel | ShowModel | EpisodeModel[] | CastModel[];
 
 export default class ShowAction {
   public static readonly REQUEST_SHOW: string = 'ShowAction.REQUEST_SHOW';
@@ -16,14 +18,14 @@ export default class ShowAction {
   public static readonly REQUEST_CAST_FINISHED: string = 'ShowAction.REQUEST_CAST_FINISHED';
 
   public static requestShow(showId: string): any {
-    return ActionUtility.createThunkEffect<ShowResponseModel>(ShowAction.REQUEST_SHOW, ShowEffect.requestShow, showId);
+    return ActionUtility.createThunkEffect<ShowModel>(ShowAction.REQUEST_SHOW, ShowEffect.requestShow, showId);
   }
 
   public static requestEpisodes(showId: string): any {
-    return ActionUtility.createThunkEffect<ShowResponseModel>(ShowAction.REQUEST_EPISODES, ShowEffect.requestEpisodes, showId);
+    return ActionUtility.createThunkEffect<EpisodeModel>(ShowAction.REQUEST_EPISODES, ShowEffect.requestEpisodes, showId);
   }
 
   public static requestCast(showId: string): any {
-    return ActionUtility.createThunkEffect<ShowResponseModel>(ShowAction.REQUEST_CAST, ShowEffect.requestCast, showId);
+    return ActionUtility.createThunkEffect<CastModel>(ShowAction.REQUEST_CAST, ShowEffect.requestCast, showId);
   }
 }

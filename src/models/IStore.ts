@@ -1,7 +1,7 @@
 import { RouterState } from 'connected-react-router';
-// import IMetaState from '../stores/Meta/IMetaState';
+import IShowState from '../stores/show/models/IShowState';
 
 export default interface IStore {
   readonly router: RouterState;
-  // readonly scheduler: IScheduleState;
+  readonly show: IShowState;
 }

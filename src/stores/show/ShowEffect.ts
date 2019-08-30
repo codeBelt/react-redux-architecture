@@ -3,11 +3,14 @@ import environment from 'environment';
 import ShowResponseModel from './models/show/ShowResponseModel';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import HttpUtility from '../../utilities/HttpUtility';
+import ShowModel from './models/ShowModel';
+import EpisodeModel from './models/EpisodeModel';
+import CastModel from './models/CastModel';
 
 export default class ShowEffect {
   private static _http = new HttpUtility();
 
-  public static async requestShow(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+  public static async requestShow(showId: string): Promise<ShowModel | HttpErrorResponseModel> {
     const endpoint: string = environment.api.shows.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
@@ -15,11 +18,10 @@ export default class ShowEffect {
       return response;
     }
 
-    return response.data;
-    // return new ShowResponseModel(response.data);
+    return new ShowModel(response.data);
   }
 
-  public static async requestEpisodes(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+  public static async requestEpisodes(showId: string): Promise<EpisodeModel | HttpErrorResponseModel> {
     const endpoint: string = environment.api.episodes.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
@@ -27,11 +29,10 @@ export default class ShowEffect {
       return response;
     }
 
-    return response.data;
-    // return new ShowResponseModel(response.data);
+    return response.data.map((json: Partial<EpisodeModel>) => new EpisodeModel(json));
   }
 
-  public static async requestCast(showId: string): Promise<ShowResponseModel | HttpErrorResponseModel> {
+  public static async requestCast(showId: string): Promise<CastModel | HttpErrorResponseModel> {
     const endpoint: string = environment.api.cast.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
@@ -39,7 +40,6 @@ export default class ShowEffect {
       return response;
     }
 
-    return response.data;
-    // return new ShowResponseModel(response.data);
+    return response.data.map((json: Partial<CastModel>) => new CastModel(json));
   }
 }
