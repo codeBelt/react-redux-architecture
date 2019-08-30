@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import environment from 'environment';
-import ShowResponseModel from './models/show/ShowResponseModel';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import HttpUtility from '../../utilities/HttpUtility';
 import ShowModel from './models/ShowModel';
