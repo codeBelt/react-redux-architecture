@@ -6,6 +6,7 @@ import { Dispatch } from 'redux';
 import IAction from '../models/IAction';
 import RouteEnum from '../constants/RouteEnum';
 import MainNav from './components/main-nav/MainNav';
+import EpisodesPage from './episodes-page/EpisodesPage';
 
 const HomePage = lazy(() => import('./home-page/HomePage'));
 const NotFoundPage = lazy(() => import('./not-found-page/NotFoundPage'));
@@ -24,6 +25,7 @@ export default class App extends React.Component<IProps, IState> {
           <MainNav />
           <Switch>
             <Route exact={true} path={RouteEnum.Home} component={HomePage} />
+            <Route path={RouteEnum.Episodes} component={EpisodesPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Suspense>

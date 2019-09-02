@@ -26,15 +26,11 @@ export default class CharacterModel extends BaseModel {
   /*
    * Client-Side properties (Not from API)
    */
-  public noneApiProperties: unknown = null;
+  // public noneApiProperties: unknown = null;
 
   constructor(data: Partial<CharacterModel>) {
     super();
 
     this.update(data);
-  }
-
-  public update(data: Partial<CharacterModel>): void {
-    super.update(data);
   }
 }

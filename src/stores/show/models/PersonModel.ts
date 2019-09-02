@@ -29,6 +29,7 @@ import ImageModel from './ImageModel';
 export default class PersonModel extends BaseModel {
   public readonly id: number = 0;
   public readonly name: string = '';
+  public readonly birthday: string = '';
   public readonly image: ImageModel = ImageModel as any;
 
   constructor(data: Partial<PersonModel>) {

@@ -22,7 +22,7 @@ generateTemplateFiles([
         },
         stringReplacers: ['__name__'],
         output: {
-            path: './src/views/__name__(kebabCase)',
+            path: './src/views/components/__name__(kebabCase)',
             pathAndFileNameDefaultCase: '(pascalCase)',
         },
     },

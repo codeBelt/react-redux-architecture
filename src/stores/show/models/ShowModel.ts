@@ -1,5 +1,6 @@
 import { BaseModel } from 'sjs-base-model';
 import ImageModel from './ImageModel';
+import NetworkModel from './NetworkModel';
 
 /*
     // Returned Api Data Sample
@@ -63,6 +64,8 @@ export default class ShowModel extends BaseModel {
   public readonly id: number = 0;
   public readonly name: string = '';
   public readonly summary: string = '';
+  public readonly genres: string[] = [];
+  public readonly network: NetworkModel = NetworkModel as any;
   public readonly image: ImageModel = ImageModel as any;
 
   constructor(data: Partial<ShowModel>) {
