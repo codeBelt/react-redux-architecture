@@ -23,7 +23,6 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
 class HomePage extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
   public componentDidMount(): void {
     this.props.dispatch(ShowAction.requestShow('74'));
-    this.props.dispatch(ShowAction.requestEpisodes('74'));
     this.props.dispatch(ShowAction.requestCast('74'));
   }
 

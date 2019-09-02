@@ -7,6 +7,7 @@ import CastModel from './models/CastModel';
 
 export default class ShowReducer {
   public static readonly initialState: IShowState = {
+    currentShowId: '74',
     show: null,
     episodes: [],
     actors: [],
