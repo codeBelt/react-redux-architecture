@@ -27,7 +27,10 @@ import ImageModel from '../ImageModel';
  */
 export default class EpisodeModel extends BaseModel {
   public readonly id: number = 0;
+  public readonly season: number = 0;
+  public readonly number: number = 0;
   public readonly name: string = '';
+  public readonly airdate: string = '';
   public readonly image: ImageModel = ImageModel as any;
   public readonly summary: string = '';
 

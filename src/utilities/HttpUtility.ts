@@ -74,7 +74,6 @@ export default class HttpUtility {
           ...oc(config).headers(undefined),
         },
       };
-      console.log(`axiosRequestConfig`, axiosRequestConfig);
       const axiosResponse: AxiosResponse = await axios(axiosRequestConfig);
 
       const { status, data, request } = axiosResponse;
