@@ -1,6 +1,6 @@
-import ShowModel from './ShowModel';
-import EpisodeModel from './EpisodeModel';
-import CastModel from './CastModel';
+import ShowModel from './shows/ShowModel';
+import EpisodeModel from './episodes/EpisodeModel';
+import CastModel from './cast/CastModel';
 
 export default interface IShowState {
   readonly currentShowId: string;

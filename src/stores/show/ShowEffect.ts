@@ -2,9 +2,9 @@ import { AxiosResponse } from 'axios';
 import environment from 'environment';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import HttpUtility from '../../utilities/HttpUtility';
-import ShowModel from './models/ShowModel';
-import EpisodeModel from './models/EpisodeModel';
-import CastModel from './models/CastModel';
+import ShowModel from './models/shows/ShowModel';
+import EpisodeModel from './models/episodes/EpisodeModel';
+import CastModel from './models/cast/CastModel';
 
 export default class ShowEffect {
   private static _http = new HttpUtility();

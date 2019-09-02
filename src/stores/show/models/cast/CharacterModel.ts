@@ -1,5 +1,5 @@
 import { BaseModel } from 'sjs-base-model';
-import ImageModel from './ImageModel';
+import ImageModel from '../ImageModel';
 
 /*
     // Returned Api Data Sample

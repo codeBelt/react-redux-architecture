@@ -1,11 +1,11 @@
 import ShowEffect from './ShowEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import ActionUtility from '../../utilities/ActionUtility';
-import ShowModel from './models/ShowModel';
-import EpisodeModel from './models/EpisodeModel';
-import CastModel from './models/CastModel';
 import { ReduxDispatch } from '../../models/ReduxProps';
 import IStore from '../../models/IStore';
+import ShowModel from './models/shows/ShowModel';
+import EpisodeModel from './models/episodes/EpisodeModel';
+import CastModel from './models/cast/CastModel';
 
 export type ShowActionUnion = HttpErrorResponseModel | ShowModel | EpisodeModel[] | CastModel[];
 
@@ -19,7 +19,7 @@ export default class ShowAction {
   public static readonly REQUEST_CAST: string = 'ShowAction.REQUEST_CAST';
   public static readonly REQUEST_CAST_FINISHED: string = 'ShowAction.REQUEST_CAST_FINISHED';
 
-  public static requestShow(showId: string): any {
+  public static requestShow(): any {
     return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 
@@ -27,7 +27,7 @@ export default class ShowAction {
     };
   }
 
-  public static requestEpisodes(showId: string): any {
+  public static requestEpisodes(): any {
     return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 
@@ -35,7 +35,7 @@ export default class ShowAction {
     };
   }
 
-  public static requestCast(showId: string): any {
+  public static requestCast(): any {
     return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 

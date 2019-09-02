@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect, DispatchProp } from 'react-redux';
 import IAction from '../../../../models/IAction';
 import IStore from '../../../../models/IStore';
-import CastModel from '../../../../stores/show/models/CastModel';
-import { Grid, Segment, Card, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
+import CastModel from '../../../../stores/show/models/cast/CastModel';
 
 interface IProps {}
 interface IState {}

@@ -1,9 +1,9 @@
 import IShowState from './models/IShowState';
 import ShowAction, { ShowActionUnion } from './ShowAction';
 import IAction from '../../models/IAction';
-import ShowModel from './models/ShowModel';
-import EpisodeModel from './models/EpisodeModel';
-import CastModel from './models/CastModel';
+import ShowModel from './models/shows/ShowModel';
+import EpisodeModel from './models/episodes/EpisodeModel';
+import CastModel from './models/cast/CastModel';
 
 export default class ShowReducer {
   public static readonly initialState: IShowState = {

@@ -6,9 +6,9 @@ import IAction from '../../models/IAction';
 import IStore from '../../models/IStore';
 import ShowAction from '../../stores/show/ShowAction';
 import Actors from './components/actors/Actors';
-import ShowModel from '../../stores/show/models/ShowModel';
 import MainOverview from './components/main-overview/MainOverview';
 import { Divider, Icon, Header } from 'semantic-ui-react';
+import ShowModel from '../../stores/show/models/shows/ShowModel';
 
 interface IProps {}
 interface IState {}
@@ -22,8 +22,8 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
 
 class HomePage extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowAction.requestShow('74'));
-    this.props.dispatch(ShowAction.requestCast('74'));
+    this.props.dispatch(ShowAction.requestShow());
+    this.props.dispatch(ShowAction.requestCast());
   }
 
   public render(): JSX.Element {

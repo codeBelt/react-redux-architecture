@@ -3,8 +3,8 @@ import { connect, DispatchProp } from 'react-redux';
 import IStore from '../../../../models/IStore';
 import IAction from '../../../../models/IAction';
 import { Item } from 'semantic-ui-react';
-import ShowModel from '../../../../stores/show/models/ShowModel';
 import { oc } from 'ts-optchain';
+import ShowModel from '../../../../stores/show/models/shows/ShowModel';
 
 interface IProps {}
 interface IState {}
