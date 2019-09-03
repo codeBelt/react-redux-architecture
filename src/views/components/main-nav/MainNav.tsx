@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 
 interface IProps {}
 interface IState {}
 
-const Nav = (props: any) => <NavLink exact {...props} activeClassName="active" />;
+const Nav = (props: NavLinkProps) => <NavLink exact {...props} activeClassName="active" />;
 
 export default class MainNav extends React.Component<IProps, IState> {
   public render(): JSX.Element {

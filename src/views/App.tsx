@@ -6,10 +6,10 @@ import { Dispatch } from 'redux';
 import IAction from '../models/IAction';
 import RouteEnum from '../constants/RouteEnum';
 import MainNav from './components/main-nav/MainNav';
-import EpisodesPage from './episodes-page/EpisodesPage';
 
 const HomePage = lazy(() => import('./home-page/HomePage'));
 const NotFoundPage = lazy(() => import('./not-found-page/NotFoundPage'));
+const EpisodesPage = lazy(() => import('./episodes-page/EpisodesPage'));
 
 interface IProps {
   readonly history: History;
