@@ -32,6 +32,11 @@ export default class PersonModel extends BaseModel {
   public readonly birthday: string = '';
   public readonly image: ImageModel = ImageModel as any;
 
+  /*
+   * Client-Side properties (Not from API)
+   */
+  // public noneApiProperties: unknown = null;
+
   constructor(data: Partial<PersonModel>) {
     super();
 

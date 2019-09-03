@@ -68,6 +68,11 @@ export default class ShowModel extends BaseModel {
   public readonly network: NetworkModel = NetworkModel as any;
   public readonly image: ImageModel = ImageModel as any;
 
+  /*
+   * Client-Side properties (Not from API)
+   */
+  // public noneApiProperties: unknown = null;
+
   constructor(data: Partial<ShowModel>) {
     super();
 

@@ -11,6 +11,11 @@ export default class ImageModel extends BaseModel {
   public readonly medium: string = '';
   public readonly original: string = '';
 
+  /*
+   * Client-Side properties (Not from API)
+   */
+  // public noneApiProperties: unknown = null;
+
   constructor(data: Partial<ImageModel>) {
     super();
 

@@ -1,7 +1,7 @@
 import styles from './HomePage.module.scss';
 
 import * as React from 'react';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import IStore from '../../models/IStore';
 import ShowAction from '../../stores/show/ShowAction';
 import Actors from './components/actors/Actors';

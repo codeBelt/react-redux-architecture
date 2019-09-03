@@ -17,6 +17,11 @@ export default class CastModel extends BaseModel {
   public readonly self: boolean = false;
   public readonly voice: boolean = false;
 
+  /*
+   * Client-Side properties (Not from API)
+   */
+  // public noneApiProperties: unknown = null;
+
   constructor(data: Partial<CastModel>) {
     super();
 

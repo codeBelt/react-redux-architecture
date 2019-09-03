@@ -34,6 +34,11 @@ export default class EpisodeModel extends BaseModel {
   public readonly image: ImageModel = ImageModel as any;
   public readonly summary: string = '';
 
+  /*
+   * Client-Side properties (Not from API)
+   */
+  // public noneApiProperties: unknown = null;
+
   constructor(data: Partial<EpisodeModel>) {
     super();
 
