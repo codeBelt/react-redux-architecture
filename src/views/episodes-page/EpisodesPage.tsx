@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import IStore from '../../models/IStore';
-import IAction from '../../models/IAction';
 import { Table, Header, Image } from 'semantic-ui-react';
 import ShowAction from '../../stores/show/ShowAction';
 import { getEpisodes } from '../../selectors/episodes/EpisodesSelector';
 import IEpisodeTable from '../../selectors/episodes/models/IEpisodeTable';
 import IEpisodeTableRow from '../../selectors/episodes/models/IEpisodeTableRow';
+import { ReduxProps } from '../../models/ReduxProps';
 
 interface IProps {}
 interface IState {}
+interface IRouteParams {}
 interface IStateToProps {
   readonly episodeTables: IEpisodeTable[];
 }
@@ -18,7 +19,7 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
   episodeTables: getEpisodes(state),
 });
 
-class EpisodesPage extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
   public componentDidMount(): void {
     this.props.dispatch(ShowAction.requestEpisodes());
   }
