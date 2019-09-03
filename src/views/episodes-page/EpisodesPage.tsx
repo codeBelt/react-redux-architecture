@@ -45,7 +45,7 @@ class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<a
                 {model.rows.map((row: IEpisodeTableRow) => (
                   <Table.Row key={row.episode}>
                     <Table.Cell>
-                      <Image src={row.image} rounded size="small" />
+                      <Image src={row.image} rounded={true} size="small" />
                     </Table.Cell>
                     <Table.Cell>{row.episode}</Table.Cell>
                     <Table.Cell>{row.date}</Table.Cell>
