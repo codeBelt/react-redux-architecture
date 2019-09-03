@@ -7,7 +7,7 @@ import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
 
-export type ShowActionUnion = HttpErrorResponseModel | ShowModel | EpisodeModel[] | CastModel[];
+export type ShowActionUnion = undefined | HttpErrorResponseModel | ShowModel | EpisodeModel[] | CastModel[];
 
 export default class ShowAction {
   public static readonly REQUEST_SHOW: string = 'ShowAction.REQUEST_SHOW';
@@ -20,7 +20,7 @@ export default class ShowAction {
   public static readonly REQUEST_CAST_FINISHED: string = 'ShowAction.REQUEST_CAST_FINISHED';
 
   public static requestShow(): any {
-    return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ShowActionUnion>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 
       await ActionUtility.createThunkEffect<ShowModel>(dispatch, ShowAction.REQUEST_SHOW, ShowEffect.requestShow, showId);
@@ -28,18 +28,18 @@ export default class ShowAction {
   }
 
   public static requestEpisodes(): any {
-    return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ShowActionUnion>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 
-      await ActionUtility.createThunkEffect<EpisodeModel>(dispatch, ShowAction.REQUEST_EPISODES, ShowEffect.requestEpisodes, showId);
+      await ActionUtility.createThunkEffect<EpisodeModel[]>(dispatch, ShowAction.REQUEST_EPISODES, ShowEffect.requestEpisodes, showId);
     };
   }
 
   public static requestCast(): any {
-    return async (dispatch: ReduxDispatch<any>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ShowActionUnion>, getState: () => IStore) => {
       const showId: string = getState().show.currentShowId;
 
-      await ActionUtility.createThunkEffect<CastModel>(dispatch, ShowAction.REQUEST_CAST, ShowEffect.requestCast, showId);
+      await ActionUtility.createThunkEffect<CastModel[]>(dispatch, ShowAction.REQUEST_CAST, ShowEffect.requestCast, showId);
     };
   }
 }

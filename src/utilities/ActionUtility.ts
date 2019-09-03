@@ -4,12 +4,12 @@ import IAction from '../models/IAction';
 
 export default class ActionUtility {
   public static async createThunkEffect<P>(
-    dispatch: ReduxDispatch<void | P | HttpErrorResponseModel>,
+    dispatch: ReduxDispatch<undefined | P | HttpErrorResponseModel>,
     actionType: string,
     effect: (...args: any[]) => Promise<P | HttpErrorResponseModel>,
     ...args: any[]
   ): Promise<P | HttpErrorResponseModel> {
-    dispatch(ActionUtility.createAction<void>(actionType));
+    dispatch(ActionUtility.createAction<undefined>(actionType));
 
     const model: P | HttpErrorResponseModel = await effect(...args);
     const isError: boolean = model instanceof HttpErrorResponseModel;

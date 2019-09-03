@@ -20,7 +20,7 @@ export default class ShowEffect {
     return new ShowModel(response.data);
   }
 
-  public static async requestEpisodes(showId: string): Promise<EpisodeModel | HttpErrorResponseModel> {
+  public static async requestEpisodes(showId: string): Promise<EpisodeModel[] | HttpErrorResponseModel> {
     const endpoint: string = environment.api.episodes.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
@@ -31,7 +31,7 @@ export default class ShowEffect {
     return response.data.map((json: Partial<EpisodeModel>) => new EpisodeModel(json));
   }
 
-  public static async requestCast(showId: string): Promise<CastModel | HttpErrorResponseModel> {
+  public static async requestCast(showId: string): Promise<CastModel[] | HttpErrorResponseModel> {
     const endpoint: string = environment.api.cast.replace('{showId}', showId);
     const response: AxiosResponse | HttpErrorResponseModel = await ShowEffect._http.get(endpoint);
 
