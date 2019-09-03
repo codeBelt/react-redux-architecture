@@ -7,7 +7,7 @@ import IEpisodeTable from './models/IEpisodeTable';
 import IEpisodeTableRow from './models/IEpisodeTableRow';
 
 export class EpisodesSelector {
-  public static getEpisodes(episodes: EpisodeModel[]): IEpisodeTable[] {
+  public static selectEpisodes(episodes: EpisodeModel[]): IEpisodeTable[] {
     const seasons: { [season: string]: EpisodeModel[] } = groupBy(episodes, 'season');
 
     return Object.entries(seasons).map(
@@ -32,7 +32,7 @@ export class EpisodesSelector {
   }
 }
 
-export const getEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
+export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
   (state: IStore) => state.show.episodes,
-  EpisodesSelector.getEpisodes
+  EpisodesSelector.selectEpisodes
 );
