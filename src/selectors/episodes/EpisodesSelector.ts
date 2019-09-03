@@ -20,7 +20,7 @@ export class EpisodesSelector {
     );
   }
 
-  private static _createTableRows(models: EpisodeModel[]) {
+  private static _createTableRows(models: EpisodeModel[]): IEpisodeTableRow[] {
     return models.map(
       (model: EpisodeModel): IEpisodeTableRow => ({
         episode: model.number,
