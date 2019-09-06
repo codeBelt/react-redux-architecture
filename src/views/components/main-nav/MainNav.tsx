@@ -5,13 +5,13 @@ import { NavLink, NavLinkProps } from 'react-router-dom';
 interface IProps {}
 interface IState {}
 
-const Nav = (props: NavLinkProps) => <NavLink exact {...props} activeClassName="active" />;
+const Nav = (props: NavLinkProps) => <NavLink exact={true} {...props} activeClassName="active" />;
 
 export default class MainNav extends React.Component<IProps, IState> {
   public render(): JSX.Element {
     return (
-      <Segment inverted>
-        <Menu inverted pointing secondary>
+      <Segment inverted={true}>
+        <Menu inverted={true} pointing={true} secondary={true}>
           <Menu.Item as={Nav} to="/" name="home" />
           <Menu.Item as={Nav} to="/episodes" name="Episodes" />
         </Menu>

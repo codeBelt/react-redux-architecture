@@ -1,6 +1,6 @@
 import HttpUtility from './HttpUtility';
 import { AxiosResponse } from 'axios';
-import IConstructor from '../models/IConstructor';
+import { IConstructor } from '../models/IConstructor';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 
 export default class EffectUtility {

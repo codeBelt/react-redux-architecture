@@ -31,7 +31,7 @@ class HomePage extends React.Component<IProps & IStateToProps & ReduxProps<any, 
     return (
       <div className={styles.wrapper}>
         <MainOverview />
-        <Divider horizontal>
+        <Divider horizontal={true}>
           <Header as="h4">
             <Icon name="users" /> Cast
           </Header>
