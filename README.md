@@ -20,7 +20,7 @@ You will also see any lint errors in the console.
 
 ### `yarn generate`
 
-Scaffolding tool, see [https://github.com/codeBelt/generate-template-files#readme](generate-template-files). Check the `tools/templates` directory for existing templates.
+Scaffolding tool, see [generate-template-files](https://github.com/codeBelt/generate-template-files#readme). Check the `tools/templates` directory for existing templates.
 
 ### `yarn build`
 
