@@ -17,8 +17,8 @@ export default class LoadingIndicator extends React.PureComponent<IProps, IState
   };
 
   public render(): JSX.Element {
-    const { children, isActive } = this.props;
-    const cssClasses: string = classNames(this.props.className, {
+    const { children, isActive, className } = this.props;
+    const cssClasses: string = classNames(className, {
       [styles.wrapper]: isActive,
     });
 
