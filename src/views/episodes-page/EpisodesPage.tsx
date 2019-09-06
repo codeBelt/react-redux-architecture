@@ -7,16 +7,20 @@ import { selectEpisodes } from '../../selectors/episodes/EpisodesSelector';
 import IEpisodeTable from '../../selectors/episodes/models/IEpisodeTable';
 import IEpisodeTableRow from '../../selectors/episodes/models/IEpisodeTableRow';
 import { ReduxProps } from '../../models/ReduxProps';
+import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
+import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 
 interface IProps {}
 interface IState {}
 interface IRouteParams {}
 interface IStateToProps {
   readonly episodeTables: IEpisodeTable[];
+  readonly isRequesting: boolean;
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
   episodeTables: selectEpisodes(state),
+  isRequesting: selectRequesting(state, [ShowAction.REQUEST_EPISODES]),
 });
 
 class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
@@ -25,10 +29,11 @@ class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<a
   }
 
   public render(): JSX.Element {
-    const { episodeTables } = this.props;
+    const { episodeTables, isRequesting } = this.props;
 
     return (
       <>
+        <LoadingIndicator isActive={isRequesting} />
         {episodeTables.map((model: IEpisodeTable) => (
           <div key={model.title}>
             <Header as="h2">{model.title}</Header>
