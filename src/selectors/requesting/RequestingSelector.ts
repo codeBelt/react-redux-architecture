@@ -4,11 +4,6 @@ import IStore from '../../models/IStore';
 
 export class RequestingSelector {
   public static selectRequesting(requestingState: IRequestingState, actionTypes: string[]): boolean {
-    console.log(`actionTypes`, actionTypes);
-    console.log(
-      `actionTypes.some((actionType: string) => requestingState[actionType])`,
-      actionTypes.some((actionType: string) => requestingState[actionType])
-    );
     return actionTypes.some((actionType: string) => requestingState[actionType]);
   }
 }
