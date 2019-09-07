@@ -4,7 +4,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
+      "pre-commit": "npm run lint && pretty-quick --staged",
       "post-commit": "git update-index -g"
     }
   },
