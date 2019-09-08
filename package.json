@@ -4,7 +4,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
+      "pre-commit": "npm run lint && pretty-quick --staged",
       "post-commit": "git update-index -g"
     }
   },
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "axios": "0.19.0",
+    "classnames": "2.2.6",
     "connected-react-router": "6.5.2",
     "dayjs": "1.8.16",
     "history": "4.9.0",
@@ -61,6 +62,7 @@
   },
   "devDependencies": {
     "@craco/craco": "5.4.0",
+    "@types/classnames": "2.2.9",
     "@types/history": "4.7.3",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.3",
