@@ -19,7 +19,7 @@ type SingleItemOrArray<T> = T extends [] ? T[] : T;
 export default class HttpUtility {
   private constructor() {}
 
-  public static async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> {
     const paramsConfig: AxiosRequestConfig | undefined = params ? { params } : undefined;
 
     return this._request(
@@ -34,7 +34,7 @@ export default class HttpUtility {
     );
   }
 
-  public static async post(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async post(endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
     return this._request(
@@ -46,7 +46,7 @@ export default class HttpUtility {
     );
   }
 
-  public static async put(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async put(endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
     return this._request(
@@ -58,7 +58,7 @@ export default class HttpUtility {
     );
   }
 
-  public static async delete(endpoint: string): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async delete(endpoint: string): Promise<AxiosResponse | HttpErrorResponseModel> {
     return this._request({
       url: endpoint,
       method: RequestMethod.Delete,
@@ -96,7 +96,7 @@ export default class HttpUtility {
     return !Array.isArray(response.data) ? new Model(response.data) : (response.data.map((json) => new Model(json)) as any);
   }
 
-  private static async _request(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  private static async _request(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> {
     if (!Boolean(restRequest.url)) {
       console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);
     }
