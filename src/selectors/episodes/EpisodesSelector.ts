@@ -1,6 +1,6 @@
 import { createSelector, Selector } from 'reselect';
 import IStore from '../../models/IStore';
-import EpisodeModel from '../../stores/show/models/episodes/EpisodeModel';
+import EpisodeModel from '../../stores/shows/models/episodes/EpisodeModel';
 import groupBy from 'lodash.groupby';
 import dayjs from 'dayjs';
 import IEpisodeTable from './models/IEpisodeTable';
@@ -33,6 +33,6 @@ export class EpisodesSelector {
 }
 
 export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
-  (state: IStore) => state.show.episodes,
+  (state: IStore) => state.shows.episodes,
   EpisodesSelector.selectEpisodes
 );

@@ -3,7 +3,7 @@ import styles from './HomePage.module.scss';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import IStore from '../../models/IStore';
-import ShowAction from '../../stores/show/ShowAction';
+import ShowsAction from '../../stores/shows/ShowsAction';
 import Actors from './components/actors/Actors';
 import MainOverview from './components/main-overview/MainOverview';
 import { Divider, Icon, Header } from 'semantic-ui-react';
@@ -19,13 +19,13 @@ interface IStateToProps {
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  isRequesting: selectRequesting(state, [ShowAction.REQUEST_SHOW, ShowAction.REQUEST_CAST]),
+  isRequesting: selectRequesting(state, [ShowsAction.REQUEST_SHOW, ShowsAction.REQUEST_CAST]),
 });
 
 class HomePage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowAction.requestShow());
-    this.props.dispatch(ShowAction.requestCast());
+    this.props.dispatch(ShowsAction.requestShow());
+    this.props.dispatch(ShowsAction.requestCast());
   }
 
   public render(): JSX.Element {

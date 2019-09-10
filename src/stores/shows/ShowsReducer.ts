@@ -1,35 +1,35 @@
-import IShowState from './models/IShowState';
-import ShowAction, { ShowActionUnion } from './ShowAction';
+import IShowsState from './models/IShowsState';
+import ShowsAction, { ShowActionUnion } from './ShowsAction';
 import IAction from '../../models/IAction';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
 
-export default class ShowReducer {
-  public static readonly initialState: IShowState = {
+export default class ShowsReducer {
+  public static readonly initialState: IShowsState = {
     currentShowId: '74',
     show: null,
     episodes: [],
     actors: [],
   };
 
-  public static reducer(state: IShowState = ShowReducer.initialState, action: IAction<ShowActionUnion>): IShowState {
+  public static reducer(state: IShowsState = ShowsReducer.initialState, action: IAction<ShowActionUnion>): IShowsState {
     if (action.error) {
       return state;
     }
 
     switch (action.type) {
-      case ShowAction.REQUEST_SHOW_FINISHED:
+      case ShowsAction.REQUEST_SHOW_FINISHED:
         return {
           ...state,
           show: action.payload as ShowModel,
         };
-      case ShowAction.REQUEST_EPISODES_FINISHED:
+      case ShowsAction.REQUEST_EPISODES_FINISHED:
         return {
           ...state,
           episodes: action.payload as EpisodeModel[],
         };
-      case ShowAction.REQUEST_CAST_FINISHED:
+      case ShowsAction.REQUEST_CAST_FINISHED:
         return {
           ...state,
           actors: action.payload as CastModel[],

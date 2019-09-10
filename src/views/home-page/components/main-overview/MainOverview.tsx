@@ -4,7 +4,7 @@ import IStore from '../../../../models/IStore';
 import IAction from '../../../../models/IAction';
 import { Item } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
-import ShowModel from '../../../../stores/show/models/shows/ShowModel';
+import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
 
 interface IProps {}
 interface IState {}
@@ -13,7 +13,7 @@ interface IStateToProps {
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  show: state.show.show,
+  show: state.shows.show,
 });
 
 class MainOverview extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {

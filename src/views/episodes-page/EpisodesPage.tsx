@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import IStore from '../../models/IStore';
 import { Table, Header, Image } from 'semantic-ui-react';
-import ShowAction from '../../stores/show/ShowAction';
+import ShowsAction from '../../stores/shows/ShowsAction';
 import { selectEpisodes } from '../../selectors/episodes/EpisodesSelector';
 import IEpisodeTable from '../../selectors/episodes/models/IEpisodeTable';
 import IEpisodeTableRow from '../../selectors/episodes/models/IEpisodeTableRow';
@@ -20,12 +20,12 @@ interface IStateToProps {
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
   episodeTables: selectEpisodes(state),
-  isRequesting: selectRequesting(state, [ShowAction.REQUEST_EPISODES]),
+  isRequesting: selectRequesting(state, [ShowsAction.REQUEST_EPISODES]),
 });
 
 class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowAction.requestEpisodes());
+    this.props.dispatch(ShowsAction.requestEpisodes());
   }
 
   public render(): JSX.Element {

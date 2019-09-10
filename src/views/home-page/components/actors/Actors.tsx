@@ -4,7 +4,7 @@ import IAction from '../../../../models/IAction';
 import IStore from '../../../../models/IStore';
 import { Card, Image } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
-import CastModel from '../../../../stores/show/models/cast/CastModel';
+import CastModel from '../../../../stores/shows/models/cast/CastModel';
 
 interface IProps {}
 interface IState {}
@@ -13,7 +13,7 @@ interface IStateToProps {
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  actors: state.show.actors,
+  actors: state.shows.actors,
 });
 
 class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
