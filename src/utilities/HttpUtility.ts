@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 import { oc } from 'ts-optchain';
+import { IConstructor } from '../models/IConstructor';
 
 export enum RequestMethod {
   Get = 'GET',
@@ -57,6 +58,26 @@ export default class HttpUtility {
       url: endpoint,
       method: RequestMethod.Delete,
     });
+  }
+
+  public async getToModel<T>(Model: IConstructor<T>, endpoint: string, params?: any): Promise<T | T[] | HttpErrorResponseModel> {
+    const response: AxiosResponse | HttpErrorResponseModel = await this.get(endpoint, params);
+
+    return this._restModelCreator<T>(Model, response);
+  }
+
+  public async postToModel<T>(Model: IConstructor<T>, endpoint: string, data?: any): Promise<T | T[] | HttpErrorResponseModel> {
+    const response: AxiosResponse | HttpErrorResponseModel = await this.post(endpoint, data);
+
+    return this._restModelCreator<T>(Model, response);
+  }
+
+  private _restModelCreator<T>(Model: IConstructor<T>, response: AxiosResponse | HttpErrorResponseModel): T | T[] | HttpErrorResponseModel {
+    if (response instanceof HttpErrorResponseModel) {
+      return response;
+    }
+
+    return !Array.isArray(response.data) ? new Model(response.data) : response.data.map((json) => new Model(json));
   }
 
   private async _fetch(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
