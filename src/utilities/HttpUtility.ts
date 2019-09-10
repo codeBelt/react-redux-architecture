@@ -17,7 +17,7 @@ export default class HttpUtility {
   public async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const paramsConfig: AxiosRequestConfig | undefined = params ? { params } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Get,
@@ -32,7 +32,7 @@ export default class HttpUtility {
   public async post(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Post,
@@ -44,7 +44,7 @@ export default class HttpUtility {
   public async put(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Put,
@@ -54,7 +54,7 @@ export default class HttpUtility {
   }
 
   public async delete(endpoint: string): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
-    return this._fetch({
+    return this._request({
       url: endpoint,
       method: RequestMethod.Delete,
     });
@@ -80,7 +80,7 @@ export default class HttpUtility {
     return !Array.isArray(response.data) ? new Model(response.data) : response.data.map((json) => new Model(json));
   }
 
-  private async _fetch(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  private async _request(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     if (!Boolean(restRequest.url)) {
       console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);
     }
@@ -165,8 +165,8 @@ export default class HttpUtility {
     const model = new HttpErrorResponseModel();
 
     model.status = error.status || 0;
-    model.message = error.message || 'Error fetching data';
-    model.errors = error.errors!.length ? error.errors! : ['Error fetching data'];
+    model.message = error.message || 'Error requesting data';
+    model.errors = error.errors!.length ? error.errors! : ['Error requesting data'];
     model.url = error.url || request.url!;
     model.raw = error.raw;
 
