@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 import { oc } from 'ts-optchain';
+import { IConstructor } from '../models/IConstructor';
 
 export enum RequestMethod {
   Get = 'GET',
@@ -12,11 +13,16 @@ export enum RequestMethod {
   Patch = 'PATCH',
 }
 
+type FlattenIfArray<T> = T extends (infer R)[] ? R : T;
+type SingleItemOrArray<T> = T extends [] ? T[] : T;
+
 export default class HttpUtility {
-  public async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  private constructor() {}
+
+  public static async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const paramsConfig: AxiosRequestConfig | undefined = params ? { params } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Get,
@@ -28,10 +34,10 @@ export default class HttpUtility {
     );
   }
 
-  public async post(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async post(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Post,
@@ -40,10 +46,10 @@ export default class HttpUtility {
     );
   }
 
-  public async put(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async put(endpoint: string, data?: any): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
-    return this._fetch(
+    return this._request(
       {
         url: endpoint,
         method: RequestMethod.Put,
@@ -52,14 +58,45 @@ export default class HttpUtility {
     );
   }
 
-  public async delete(endpoint: string): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
-    return this._fetch({
+  public static async delete(endpoint: string): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+    return this._request({
       url: endpoint,
       method: RequestMethod.Delete,
     });
   }
 
-  private async _fetch(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
+  public static async getToModel<T>(
+    Model: IConstructor<FlattenIfArray<T>>,
+    endpoint: string,
+    params?: any
+  ): Promise<SingleItemOrArray<T> | HttpErrorResponseModel> {
+    const response: AxiosResponse | HttpErrorResponseModel = await this.get(endpoint, params);
+
+    return this._restModelCreator<T>(Model, response);
+  }
+
+  public static async postToModel<T>(
+    Model: IConstructor<FlattenIfArray<T>>,
+    endpoint: string,
+    data?: any
+  ): Promise<SingleItemOrArray<T> | HttpErrorResponseModel> {
+    const response: AxiosResponse | HttpErrorResponseModel = await this.post(endpoint, data);
+
+    return this._restModelCreator<T>(Model, response);
+  }
+
+  private static _restModelCreator<T>(
+    Model: IConstructor<FlattenIfArray<T>>,
+    response: AxiosResponse | HttpErrorResponseModel
+  ): SingleItemOrArray<T> | HttpErrorResponseModel {
+    if (response instanceof HttpErrorResponseModel) {
+      return response;
+    }
+
+    return !Array.isArray(response.data) ? new Model(response.data) : (response.data.map((json) => new Model(json)) as any);
+  }
+
+  private static async _request(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse<any> | HttpErrorResponseModel> {
     if (!Boolean(restRequest.url)) {
       console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);
     }
@@ -140,12 +177,12 @@ export default class HttpUtility {
     }
   }
 
-  private _fillInErrorWithDefaults(error: Partial<HttpErrorResponseModel>, request: Partial<Request>): HttpErrorResponseModel {
+  private static _fillInErrorWithDefaults(error: Partial<HttpErrorResponseModel>, request: Partial<Request>): HttpErrorResponseModel {
     const model = new HttpErrorResponseModel();
 
     model.status = error.status || 0;
-    model.message = error.message || 'Error fetching data';
-    model.errors = error.errors!.length ? error.errors! : ['Error fetching data'];
+    model.message = error.message || 'Error requesting data';
+    model.errors = error.errors!.length ? error.errors! : ['Error requesting data'];
     model.url = error.url || request.url!;
     model.raw = error.raw;
 
