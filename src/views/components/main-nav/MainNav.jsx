@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = (props) => <NavLink exact={true} {...props} activeClassName="active" />;
 
-export default class MainNav extends React.Component {
+export default class MainNav extends React.PureComponent {
   render() {
     return (
       <Segment inverted={true}>
