@@ -49,7 +49,7 @@ export default class ErrorReducer {
 
     const isError = isFinishedRequestType && Boolean(error);
 
-    if (isError) {
+    if (isError === false) {
       return state;
     }
 
