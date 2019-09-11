@@ -1,5 +1,9 @@
 {
   "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "jsRules": {
+    "object-literal-sort-keys": false,
+    "no-console": [true, "log"]
+  },
   "rules": {
     "array-type": [true, "array"],
     "arrow-parens": true,
