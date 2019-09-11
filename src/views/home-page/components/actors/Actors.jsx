@@ -14,29 +14,29 @@ class Actors extends React.Component {
   }
 
   render() {
+    return <Card.Group centered={true}>{this._renderCards()}</Card.Group>;
+  }
+
+  _renderCards() {
     const { actors } = this.props;
 
-    return (
-      <Card.Group centered={true}>
-        {actors.map((model) => {
-          const image = oc(model).character.image.medium('');
-          const missingImage = 'https://react.semantic-ui.com/images/wireframe/image.png';
+    return actors.map((model) => {
+      const image = oc(model).character.image.medium('');
+      const missingImage = 'https://react.semantic-ui.com/images/wireframe/image.png';
 
-          return (
-            <Card key={model.person.name}>
-              <Card.Content>
-                <Image floated="right" size="mini" src={image || missingImage} />
-                <Card.Header>{model.person.name}</Card.Header>
-                <Card.Meta>as {model.character.name}</Card.Meta>
-                <Card.Description>
-                  <strong>Birth date:</strong> {model.person.birthday}
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          );
-        })}
-      </Card.Group>
-    );
+      return (
+        <Card key={model.person.name}>
+          <Card.Content>
+            <Image floated="right" size="mini" src={image || missingImage} />
+            <Card.Header>{model.person.name}</Card.Header>
+            <Card.Meta>as {model.character.name}</Card.Meta>
+            <Card.Description>
+              <strong>Birth date:</strong> {model.person.birthday}
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      );
+    });
   }
 }
 

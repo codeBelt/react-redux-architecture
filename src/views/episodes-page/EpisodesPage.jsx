@@ -17,40 +17,48 @@ class EpisodesPage extends React.Component {
   }
 
   render() {
-    const { episodeTables, isRequesting } = this.props;
+    const { isRequesting } = this.props;
 
     return (
       <>
         <LoadingIndicator isActive={isRequesting} />
-        {episodeTables.map((model) => (
-          <div key={model.title}>
-            <Header as="h2">{model.title}</Header>
-            <Table>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell width={1}>Scene</Table.HeaderCell>
-                  <Table.HeaderCell>Episode</Table.HeaderCell>
-                  <Table.HeaderCell>Date</Table.HeaderCell>
-                  <Table.HeaderCell>Name</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {model.rows.map((row) => (
-                  <Table.Row key={row.episode}>
-                    <Table.Cell>
-                      <Image src={row.image} rounded={true} size="small" />
-                    </Table.Cell>
-                    <Table.Cell>{row.episode}</Table.Cell>
-                    <Table.Cell>{row.date}</Table.Cell>
-                    <Table.Cell>{row.name}</Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table>
-          </div>
-        ))}
+        {this._renderTableGroup()}
       </>
     );
+  }
+
+  _renderTableGroup() {
+    const { episodeTables } = this.props;
+
+    return episodeTables.map((model) => (
+      <div key={model.title}>
+        <Header as="h2">{model.title}</Header>
+        <Table>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width={1}>Scene</Table.HeaderCell>
+              <Table.HeaderCell>Episode</Table.HeaderCell>
+              <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{this._renderTableRow(model.rows)}</Table.Body>
+        </Table>
+      </div>
+    ));
+  }
+
+  _renderTableRow(rows) {
+    return rows.map((row) => (
+      <Table.Row key={row.episode}>
+        <Table.Cell>
+          <Image src={row.image} rounded={true} size="small" />
+        </Table.Cell>
+        <Table.Cell>{row.episode}</Table.Cell>
+        <Table.Cell>{row.date}</Table.Cell>
+        <Table.Cell>{row.name}</Table.Cell>
+      </Table.Row>
+    ));
   }
 }
 
