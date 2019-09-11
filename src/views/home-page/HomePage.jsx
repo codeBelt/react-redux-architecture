@@ -14,11 +14,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 class HomePage extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(ShowsAction.requestShow());
-    this.props.dispatch(ShowsAction.requestCast());
-  }
-
   render() {
     const { isRequesting } = this.props;
 

@@ -2,12 +2,17 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Item } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
+import ShowsAction from '../../../../stores/shows/ShowsAction';
 
 const mapStateToProps = (state, ownProps) => ({
   show: state.shows.show,
 });
 
 class MainOverview extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(ShowsAction.requestShow());
+  }
+
   render() {
     const { show } = this.props;
 

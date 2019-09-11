@@ -2,12 +2,17 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Card, Image } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
+import ShowsAction from '../../../../stores/shows/ShowsAction';
 
 const mapStateToProps = (state, ownProps) => ({
   actors: state.shows.actors,
 });
 
 class Actors extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(ShowsAction.requestCast());
+  }
+
   render() {
     const { actors } = this.props;
 
