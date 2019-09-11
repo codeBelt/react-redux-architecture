@@ -23,11 +23,6 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
 });
 
 class HomePage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
-  public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestShow());
-    this.props.dispatch(ShowsAction.requestCast());
-  }
-
   public render(): JSX.Element {
     const { isRequesting } = this.props;
 
