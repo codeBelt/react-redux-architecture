@@ -7,7 +7,7 @@ interface IState {}
 
 const Nav = (props: NavLinkProps) => <NavLink exact={true} {...props} activeClassName="active" />;
 
-export default class MainNav extends React.Component<IProps, IState> {
+export default class MainNav extends React.PureComponent<IProps, IState> {
   public render(): JSX.Element {
     return (
       <Segment inverted={true}>
