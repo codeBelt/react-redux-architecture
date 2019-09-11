@@ -22,12 +22,12 @@ class EpisodesPage extends React.Component {
     return (
       <>
         <LoadingIndicator isActive={isRequesting} />
-        {this._renderTableGroup()}
+        {this._buildTableGroup()}
       </>
     );
   }
 
-  _renderTableGroup() {
+  _buildTableGroup() {
     const { episodeTables } = this.props;
 
     return episodeTables.map((model) => (
@@ -42,13 +42,13 @@ class EpisodesPage extends React.Component {
               <Table.HeaderCell>Name</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Body>{this._renderTableRow(model.rows)}</Table.Body>
+          <Table.Body>{this._buildTableRow(model.rows)}</Table.Body>
         </Table>
       </div>
     ));
   }
 
-  _renderTableRow(rows) {
+  _buildTableRow(rows) {
     return rows.map((row) => (
       <Table.Row key={row.episode}>
         <Table.Cell>

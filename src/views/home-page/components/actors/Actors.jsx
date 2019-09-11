@@ -14,10 +14,10 @@ class Actors extends React.Component {
   }
 
   render() {
-    return <Card.Group centered={true}>{this._renderCards()}</Card.Group>;
+    return <Card.Group centered={true}>{this._buildCards()}</Card.Group>;
   }
 
-  _renderCards() {
+  _buildCards() {
     const { actors } = this.props;
 
     return actors.map((model) => {
