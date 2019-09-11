@@ -41,10 +41,10 @@ export default class ErrorReducer {
     const isStartRequestType = type.includes('REQUEST_') && !isFinishedRequestType;
 
     if (isStartRequestType === true) {
-      // remove the finished type that is associated with the start type
-      const { [`${type}_FINISHED`]: value, ...statWithoutFinishedType } = state;
+      // remove the finished type that is associated with the start type because the start action has been re-dispatched
+      const { [`${type}_FINISHED`]: value, ...stateWithoutFinishedType } = state;
 
-      return statWithoutFinishedType;
+      return stateWithoutFinishedType;
     }
 
     const isError = isFinishedRequestType && error;
