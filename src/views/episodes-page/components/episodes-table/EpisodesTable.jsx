@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Header, Table } from 'semantic-ui-react';
 import EpisodesTableRow from '../episodes-table-row/EpisodesTableRow';
 
-export default class EpisodesTable extends React.Component {
+export default class EpisodesTable extends React.PureComponent {
   render() {
     const { tableData } = this.props;
 
