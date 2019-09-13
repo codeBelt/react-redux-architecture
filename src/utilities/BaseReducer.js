@@ -4,7 +4,7 @@ export default class BaseReducer {
   reducer = (state = this.initialState, action) => {
     const handler = this[action.type];
 
-    if (action.error || !handler) {
+    if (!handler || action.error) {
       return state;
     }
 
