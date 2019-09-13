@@ -2,10 +2,12 @@ export default class BaseReducer {
   initialState = {};
 
   reducer = (state = this.initialState, action) => {
-    if (action.error || !this[action.type]) {
+    const handler = this[action.type];
+
+    if (action.error || !handler) {
       return state;
     }
 
-    return this[action.type](state, action);
+    return handler(state, action);
   };
 }
