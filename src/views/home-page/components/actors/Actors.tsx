@@ -2,10 +2,10 @@ import * as React from 'react';
 import { connect, DispatchProp } from 'react-redux';
 import IAction from '../../../../models/IAction';
 import IStore from '../../../../models/IStore';
-import { Card, Image } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
+import { Card } from 'semantic-ui-react';
 import CastModel from '../../../../stores/shows/models/cast/CastModel';
 import ShowsAction from '../../../../stores/shows/ShowsAction';
+import ActorCard from './components/actor-card/ActorCard';
 
 interface IProps {}
 interface IState {}
@@ -27,23 +27,9 @@ class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IActi
 
     return (
       <Card.Group centered={true}>
-        {actors.map((model: CastModel) => {
-          const image: string = oc(model).character.image.medium('');
-          const missingImage: string = 'https://react.semantic-ui.com/images/wireframe/image.png';
-
-          return (
-            <Card key={model.person.name}>
-              <Card.Content>
-                <Image floated="right" size="mini" src={image || missingImage} />
-                <Card.Header>{model.person.name}</Card.Header>
-                <Card.Meta>as {model.character.name}</Card.Meta>
-                <Card.Description>
-                  <strong>Birth date:</strong> {model.person.birthday}
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          );
-        })}
+        {actors.map((model: CastModel) => (
+          <ActorCard key={model.person.name} cardData={model} />
+        ))}
       </Card.Group>
     );
   }
