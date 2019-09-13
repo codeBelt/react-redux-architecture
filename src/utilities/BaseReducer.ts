@@ -8,7 +8,7 @@ export default abstract class BaseReducer<T> {
   public reducer = (state: T = this.initialState, action: IAction<any>): T => {
     const handler: Handler<T> | undefined = this[action.type];
 
-    if (action.error || !handler) {
+    if (!handler || action.error) {
       return state;
     }
 
