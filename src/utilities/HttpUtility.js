@@ -59,26 +59,6 @@ export default class HttpUtility {
     });
   }
 
-  static async getToModel(Model, endpoint, params) {
-    const response = await this.get(endpoint, params);
-
-    return this._restModelCreator(Model, response);
-  }
-
-  static async postToModel(Model, endpoint, data) {
-    const response = await this.post(endpoint, data);
-
-    return this._restModelCreator(Model, response);
-  }
-
-  static _restModelCreator(Model, response) {
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-
-    return !Array.isArray(response.data) ? new Model(response.data) : response.data.map((json) => new Model(json));
-  }
-
   static async _request(restRequest, config) {
     if (!Boolean(restRequest.url)) {
       console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);

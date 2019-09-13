@@ -4,18 +4,19 @@ import HttpUtility from '../../utilities/HttpUtility';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
+import EffectUtility from '../../utilities/EffectUtility';
 
 export default class ShowsEffect {
   static async requestShow(showId) {
     const endpoint = environment.api.shows.replace('{showId}', showId);
 
-    return HttpUtility.getToModel(ShowModel, endpoint);
+    return EffectUtility.getToModel(ShowModel, endpoint);
   }
 
   static async requestEpisodes(showId) {
     const endpoint = environment.api.episodes.replace('{showId}', showId);
 
-    return HttpUtility.getToModel(EpisodeModel, endpoint);
+    return EffectUtility.getToModel(EpisodeModel, endpoint);
   }
 
   static async requestCast(showId) {
