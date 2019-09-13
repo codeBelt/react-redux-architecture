@@ -1,36 +1,32 @@
 import ShowsAction from './ShowsAction';
+import BaseReducer from '../../utilities/BaseReducer';
 
-export default class ShowsReducer {
-  static initialState = {
+export default class ShowsReducer extends BaseReducer {
+  initialState = {
     currentShowId: '74',
     show: null,
     episodes: [],
     actors: [],
   };
 
-  static reducer(state = ShowsReducer.initialState, action) {
-    if (action.error) {
-      return state;
-    }
+  [ShowsAction.REQUEST_SHOW_FINISHED](state, action) {
+    return {
+      ...state,
+      show: action.payload,
+    };
+  }
 
-    switch (action.type) {
-      case ShowsAction.REQUEST_SHOW_FINISHED:
-        return {
-          ...state,
-          show: action.payload,
-        };
-      case ShowsAction.REQUEST_EPISODES_FINISHED:
-        return {
-          ...state,
-          episodes: action.payload,
-        };
-      case ShowsAction.REQUEST_CAST_FINISHED:
-        return {
-          ...state,
-          actors: action.payload,
-        };
-      default:
-        return state;
-    }
+  [ShowsAction.REQUEST_EPISODES_FINISHED](state, action) {
+    return {
+      ...state,
+      episodes: action.payload,
+    };
+  }
+
+  [ShowsAction.REQUEST_CAST_FINISHED](state, action) {
+    return {
+      ...state,
+      actors: action.payload,
+    };
   }
 }
