@@ -6,9 +6,9 @@
 export default function(baseApi) {
   return {
     api: {
-      shows: `${baseApi}/shows/{showId}`,
-      episodes: `${baseApi}/shows/{showId}/episodes`,
-      cast: `${baseApi}/shows/{showId}/cast`,
+      shows: `${baseApi}/shows/:showId`,
+      episodes: `${baseApi}/shows/:showId/episodes`,
+      cast: `${baseApi}/shows/:showId/cast`,
     },
     isProduction: true,
     isDevelopment: false,
