@@ -11,7 +11,7 @@ export default (history: History): Reducer<IStore> => {
     error: ErrorReducer.reducer,
     requesting: RequestingReducer.reducer,
     router: connectRouter(history) as any,
-    shows: ShowsReducer.reducer,
+    shows: new ShowsReducer().reducer,
   };
 
   return combineReducers(reducerMap);
