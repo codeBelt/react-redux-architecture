@@ -9,7 +9,7 @@ export default (history) => {
     error: ErrorReducer.reducer,
     requesting: RequestingReducer.reducer,
     router: connectRouter(history),
-    shows: ShowsReducer.reducer,
+    shows: new ShowsReducer().reducer,
   };
 
   return combineReducers(reducerMap);
