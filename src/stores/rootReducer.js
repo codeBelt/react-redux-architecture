@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import ShowsReducer from './shows/ShowsReducer';
 import RequestingReducer from './requesting/RequestingReducer';
 import ErrorReducer from './error/ErrorReducer';
+import ShowsReducer from './shows/ShowsReducer';
 
 export default (history) => {
   const reducerMap = {

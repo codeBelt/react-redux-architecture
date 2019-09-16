@@ -2,12 +2,18 @@ export default class BaseReducer {
   initialState = {};
 
   reducer = (state = this.initialState, action) => {
-    const handler = this[action.type];
+    // if the action type is used for a method name then this be a reference to
+    // that class method.
+    // if the action type is not found then the "method" const will be undefined.
+    const method = this[action.type];
 
-    if (!handler || action.error) {
+    // if the action type "method" const is undefined or the action is an error
+    // return the state.
+    if (!method || action.error) {
       return state;
     }
 
-    return handler(state, action);
+    // Return the modified state from the method.
+    return method(state, action);
   };
 }
