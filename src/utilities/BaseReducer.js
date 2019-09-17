@@ -13,7 +13,7 @@ export default class BaseReducer {
       return state;
     }
 
-    // Return the modified state from the method.
-    return method(state, action);
+    // Calls method with the correct "this" and returns the modified state from the method.
+    return method.call(this, state, action);
   };
 }
