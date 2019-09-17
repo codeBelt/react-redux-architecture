@@ -17,7 +17,7 @@ export default abstract class BaseReducer<T> {
       return state;
     }
 
-    // Return the modified state from the method.
-    return method(state, action);
+    // Calls the method with the correct "this" and returns the modified state.
+    return method.call(this, state, action);
   };
 }
