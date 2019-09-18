@@ -16,7 +16,7 @@ export default class HttpUtility {
   static async get(endpoint, params, requestConfig) {
     const paramsConfig = params ? { params } : undefined;
 
-    return this._request(
+    return HttpUtility._request(
       {
         url: endpoint,
         method: RequestMethod.Get,
@@ -31,7 +31,7 @@ export default class HttpUtility {
   static async post(endpoint, data) {
     const config = data ? { data } : undefined;
 
-    return this._request(
+    return HttpUtility._request(
       {
         url: endpoint,
         method: RequestMethod.Post,
@@ -43,7 +43,7 @@ export default class HttpUtility {
   static async put(endpoint, data) {
     const config = data ? { data } : undefined;
 
-    return this._request(
+    return HttpUtility._request(
       {
         url: endpoint,
         method: RequestMethod.Put,
@@ -53,7 +53,7 @@ export default class HttpUtility {
   }
 
   static async delete(endpoint) {
-    return this._request({
+    return HttpUtility._request({
       url: endpoint,
       method: RequestMethod.Delete,
     });
@@ -79,7 +79,7 @@ export default class HttpUtility {
       const { status, data, request } = axiosResponse;
 
       if (data.success === false) {
-        return this._fillInErrorWithDefaults(
+        return HttpUtility._fillInErrorWithDefaults(
           {
             status,
             message: data.errors.join(' - '),
@@ -100,7 +100,7 @@ export default class HttpUtility {
         const { status, statusText, data } = error.response;
         const errors = data.hasOwnProperty('errors') ? [statusText, ...data.errors] : [statusText];
 
-        return this._fillInErrorWithDefaults(
+        return HttpUtility._fillInErrorWithDefaults(
           {
             status,
             message: errors.filter(Boolean).join(' - '),
@@ -114,7 +114,7 @@ export default class HttpUtility {
         // The request was made but no response was received `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in node.js
         const { status, statusText, responseURL } = error.request;
 
-        return this._fillInErrorWithDefaults(
+        return HttpUtility._fillInErrorWithDefaults(
           {
             status,
             message: statusText,
@@ -127,7 +127,7 @@ export default class HttpUtility {
       }
 
       // Something happened in setting up the request that triggered an Error
-      return this._fillInErrorWithDefaults(
+      return HttpUtility._fillInErrorWithDefaults(
         {
           status: 0,
           message: error.message,
