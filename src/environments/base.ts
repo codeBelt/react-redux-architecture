@@ -9,6 +9,7 @@ export default function(baseApi: string) {
       shows: `${baseApi}/shows/:showId`,
       episodes: `${baseApi}/shows/:showId/episodes`,
       cast: `${baseApi}/shows/:showId/cast`,
+      errorExample: 'https://httpstat.us/520',
     },
     isProduction: true,
     isDevelopment: false,

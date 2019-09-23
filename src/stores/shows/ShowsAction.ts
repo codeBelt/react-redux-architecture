@@ -19,6 +19,9 @@ export default class ShowsAction {
   public static readonly REQUEST_CAST: string = 'ShowsAction.REQUEST_CAST';
   public static readonly REQUEST_CAST_FINISHED: string = 'ShowsAction.REQUEST_CAST_FINISHED';
 
+  public static readonly REQUEST_ERROR: string = 'ShowsAction.REQUEST_ERROR';
+  public static readonly REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
+
   public static requestShow(): any {
     return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
       const showId: string = getState().shows.currentShowId;
@@ -40,6 +43,12 @@ export default class ShowsAction {
       const showId: string = getState().shows.currentShowId;
 
       await ActionUtility.createThunkEffect<CastModel[]>(dispatch, ShowsAction.REQUEST_CAST, ShowsEffect.requestCast, showId);
+    };
+  }
+
+  public static requestError(): any {
+    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+      await ActionUtility.createThunkEffect<any>(dispatch, ShowsAction.REQUEST_ERROR, ShowsEffect.requestError);
     };
   }
 }

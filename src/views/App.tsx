@@ -12,6 +12,7 @@ import Toasts from './components/toasts/Toasts';
 const HomePage = lazy(() => import('./home-page/HomePage'));
 const NotFoundPage = lazy(() => import('./not-found-page/NotFoundPage'));
 const EpisodesPage = lazy(() => import('./episodes-page/EpisodesPage'));
+const AboutPage = lazy(() => import('./about-page/AboutPage'));
 
 interface IProps {
   readonly history: History;
@@ -28,6 +29,7 @@ export default class App extends React.Component<IProps, IState> {
           <Switch>
             <Route exact={true} path={RouteEnum.Home} component={HomePage} />
             <Route path={RouteEnum.Episodes} component={EpisodesPage} />
+            <Route path={RouteEnum.About} component={AboutPage} />
             <Route component={NotFoundPage} />
           </Switch>
           <Toasts />

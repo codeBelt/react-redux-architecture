@@ -7,6 +7,7 @@ declare module 'environment' {
       shows: string;
       episodes: string;
       cast: string;
+      errorExample: string;
     };
     isDevelopment: boolean;
     isProduction: boolean;
