@@ -34,7 +34,9 @@ class AboutPage extends React.Component<IProps & IStateToProps & ReduxProps<any,
     return (
       <div className={styles.wrapper}>
         <Header as="h2">About</Header>
-        <LoadingIndicator isActive={isRequesting}>{requestErrorText && <div>Sorry there was an error requesting this content</div>}</LoadingIndicator>
+        <LoadingIndicator isActive={isRequesting}>
+          {requestErrorText && <div>Sorry there was an error requesting this content.</div>}
+        </LoadingIndicator>
       </div>
     );
   }
