@@ -36,7 +36,7 @@ class Toasts extends React.Component<IProps & IStateToProps & ReduxProps<any>, I
     return (
       <div className={styles.wrapper}>
         {toasts.map((item: IToast) => {
-          const buttonColor = this.buttonColorMap[item.type];
+          const buttonColor: SemanticCOLORS = this.buttonColorMap[item.type];
 
           return (
             <Card key={item.id}>
