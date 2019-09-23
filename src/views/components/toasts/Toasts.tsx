@@ -44,7 +44,7 @@ class Toasts extends React.Component<IProps & IStateToProps & ReduxProps<any>, I
                 <Card.Header content={item.type} />
                 <Card.Description content={item.message} />
               </Card.Content>
-              <Card.Content extra>
+              <Card.Content extra={true}>
                 <Button color={buttonColor} onClick={this._onClickRemoveNotification(item.id)}>
                   Close
                 </Button>
