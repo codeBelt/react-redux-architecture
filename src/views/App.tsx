@@ -24,13 +24,13 @@ export default class App extends React.Component<IProps, IState> {
     return (
       <ConnectedRouter history={this.props.history}>
         <Suspense fallback={<LoadingIndicator isActive={true} />}>
-          <Toasts />
           <MainNav />
           <Switch>
             <Route exact={true} path={RouteEnum.Home} component={HomePage} />
             <Route path={RouteEnum.Episodes} component={EpisodesPage} />
             <Route component={NotFoundPage} />
           </Switch>
+          <Toasts />
         </Suspense>
       </ConnectedRouter>
     );

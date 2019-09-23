@@ -7,9 +7,12 @@ import reduxFreeze from 'redux-freeze';
 import environment from 'environment';
 import rootReducer from './rootReducer';
 import IStore from '../models/IStore';
+import errorToastMiddleware from '../middlewares/errorToastMiddleware';
 
 export default (initialState: Partial<IStore>, history: History): Store<IStore> => {
-  const middleware: Middleware[] = [environment.isDevelopment ? reduxFreeze : null!, routerMiddleware(history), thunk].filter(Boolean);
+  const middleware: Middleware[] = [environment.isDevelopment ? reduxFreeze : null!, thunk, routerMiddleware(history), errorToastMiddleware()].filter(
+    Boolean
+  );
 
   const store: Store<IStore> = createStore(rootReducer(history), initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
