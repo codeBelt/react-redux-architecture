@@ -33,4 +33,18 @@ export default class ShowsEffect {
 
     return response.data.map((json: Partial<CastModel>) => new CastModel(json));
   }
+
+  /**
+   * This is only to trigger an error api response so we can use it for an example in the AboutPage
+   */
+  public static async requestError(): Promise<any | HttpErrorResponseModel> {
+    const endpoint: string = environment.api.errorExample;
+    const response: AxiosResponse | HttpErrorResponseModel = await HttpUtility.get(endpoint);
+
+    if (response instanceof HttpErrorResponseModel) {
+      return response;
+    }
+
+    return response.data;
+  }
 }
