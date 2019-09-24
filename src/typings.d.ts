@@ -4,9 +4,10 @@ declare module 'lodash.groupby';
 declare module 'environment' {
   const value: {
     api: {
-      shows;
-      episodes;
-      cast;
+      shows: string;
+      episodes: string;
+      cast: string;
+      errorExample: string;
     };
     isDevelopment: boolean;
     isProduction: boolean;

@@ -11,6 +11,9 @@ export default class ShowsAction {
   static REQUEST_CAST = 'ShowsAction.REQUEST_CAST';
   static REQUEST_CAST_FINISHED = 'ShowsAction.REQUEST_CAST_FINISHED';
 
+  static REQUEST_ERROR = 'ShowsAction.REQUEST_ERROR';
+  static REQUEST_ERROR_FINISHED = 'ShowsAction.REQUEST_ERROR_FINISHED';
+
   static requestShow() {
     return async (dispatch, getState) => {
       const showId = getState().shows.currentShowId;
@@ -32,6 +35,12 @@ export default class ShowsAction {
       const showId = getState().shows.currentShowId;
 
       await ActionUtility.createThunkEffect(dispatch, ShowsAction.REQUEST_CAST, ShowsEffect.requestCast, showId);
+    };
+  }
+
+  static requestError() {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(dispatch, ShowsAction.REQUEST_ERROR, ShowsEffect.requestError);
     };
   }
 }
