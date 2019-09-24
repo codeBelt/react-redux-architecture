@@ -9,7 +9,7 @@ const errorToastMiddleware = (): Middleware => (store: MiddlewareAPI<Dispatch, I
   if (action.error) {
     const errorAction = action as Required<IAction<IError>>;
 
-    next(ToastsAction.addToast(errorAction.payload.message, ToastStatusEnum.Error));
+    next(ToastsAction.add(errorAction.payload.message, ToastStatusEnum.Error));
   }
 
   next(action);

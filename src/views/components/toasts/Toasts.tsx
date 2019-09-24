@@ -57,7 +57,7 @@ class Toasts extends React.Component<IProps & IStateToProps & ReduxProps<any>, I
   }
 
   private _onClickRemoveNotification = (id: string) => (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void => {
-    this.props.dispatch(ToastsAction.removeToast(id));
+    this.props.dispatch(ToastsAction.removeById(id));
   };
 }
 

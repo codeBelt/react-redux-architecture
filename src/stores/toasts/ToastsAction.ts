@@ -8,7 +8,7 @@ export default class ToastsAction {
   public static readonly ADD_TOAST: string = 'ToastsAction.ADD_TOAST';
   public static readonly REMOVE_TOAST: string = 'ToastsAction.REMOVE_TOAST';
 
-  public static addToast(message: string, type: ToastStatusEnum): IAction<IToast> {
+  public static add(message: string, type: ToastStatusEnum): IAction<IToast> {
     return ActionUtility.createAction(ToastsAction.ADD_TOAST, {
       message,
       type,
@@ -16,7 +16,7 @@ export default class ToastsAction {
     });
   }
 
-  public static removeToast(toastId: string): IAction<string> {
+  public static removeById(toastId: string): IAction<string> {
     return ActionUtility.createAction(ToastsAction.REMOVE_TOAST, toastId);
   }
 }
