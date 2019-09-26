@@ -1,5 +1,6 @@
 {
   "name": "react-typescript",
+  "homepage": "https://codebelt.github.io/react-redux-architecture",
   "version": "0.1.0",
   "private": true,
   "husky": {
@@ -16,6 +17,9 @@
     "prod": "cross-env CLIENT_ENV=production craco start",
     "---------- PRODUCTION ----------------------------------------------------------------------------------": "",
     "build": "cross-env CLIENT_ENV=production craco build",
+    "---------- Github Deploy -------------------------------------------------------------------------------": "",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "---------- TESTING -------------------------------------------------------------------------------------": "",
     "test": "cross-env CLIENT_ENV=test craco test",
     "type-check": "tsc --noEmit",
@@ -74,6 +78,7 @@
     "@types/uuid": "3.4.5",
     "cross-env": "6.0.0",
     "generate-template-files": "2.2.0",
+    "gh-pages": "2.1.1",
     "husky": "3.0.5",
     "node-sass": "4.12.0",
     "prettier": "1.18.2",
