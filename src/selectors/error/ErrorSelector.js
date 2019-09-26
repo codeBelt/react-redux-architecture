@@ -11,8 +11,8 @@ import { createSelector } from 'reselect';
  */
 export class ErrorSelector {
   /**
-   * Creates a new object with the key being the finished action type
-   * (e.g. "SomeAction.REQUEST_*_FINISHED") and the value being the
+   * Returns a new object with the keys being the finished action type
+   * (e.g. "SomeAction.REQUEST_*_FINISHED") and the value being a
    * HttpErrorResponseModel.
    *
    * @param {IErrorState} errorState
@@ -22,8 +22,10 @@ export class ErrorSelector {
    */
   static selectRawErrors(errorState, actionTypes) {
     return actionTypes.reduce((partialState, actionType) => {
-      if (errorState[actionType]) {
-        partialState[actionType] = errorState[actionType];
+      const httpErrorResponseModel = errorState[actionType];
+
+      if (httpErrorResponseModel) {
+        partialState[actionType] = httpErrorResponseModel;
       }
 
       return partialState;
@@ -41,8 +43,10 @@ export class ErrorSelector {
    */
   static selectErrorText(errorState, actionTypes) {
     const errorList = actionTypes.reduce((errorMessages, actionType) => {
-      if (errorState[actionType]) {
-        const { message, errors } = errorState[actionType];
+      const httpErrorResponseModel = errorState[actionType];
+
+      if (httpErrorResponseModel) {
+        const { message, errors } = httpErrorResponseModel;
         const arrayOfErrors = errors.length ? errors : [message];
 
         return errorMessages.concat(arrayOfErrors);
