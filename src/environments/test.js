@@ -1,6 +1,6 @@
 import environment from './base';
 
-const baseApi = 'http://api.tvmaze.com';
+const baseApi = 'https://api.tvmaze.com';
 const env = environment(baseApi);
 
 export default {

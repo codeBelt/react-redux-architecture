@@ -5,9 +5,13 @@ import environment from './base';
  * You shouldn't have override anything.
  */
 
-const baseApi = 'http://api.tvmaze.com';
+const baseApi = 'https://api.tvmaze.com';
 const env = environment(baseApi);
 
 export default {
   ...env,
+  route: {
+    ...env.route,
+    baseRoute: '/react-redux-architecture',
+  },
 };
