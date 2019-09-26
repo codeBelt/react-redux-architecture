@@ -3,6 +3,9 @@ declare module 'lodash.groupby';
 
 declare module 'environment' {
   const value: {
+    route: {
+      baseRoute: string;
+    };
     api: {
       shows: string;
       episodes: string;
