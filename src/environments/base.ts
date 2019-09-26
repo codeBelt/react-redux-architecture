@@ -5,6 +5,9 @@
 
 export default function(baseApi: string) {
   return {
+    route: {
+      baseRoute: '',
+    },
     api: {
       shows: `${baseApi}/shows/:showId`,
       episodes: `${baseApi}/shows/:showId/episodes`,
