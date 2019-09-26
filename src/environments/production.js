@@ -12,6 +12,6 @@ export default {
   ...env,
   route: {
     ...env.route,
-    baseRoute: '/react-redux-architecture',
+    baseRoute: '/react-redux-architecture', // Fixes issue with Github Pages
   },
 };
