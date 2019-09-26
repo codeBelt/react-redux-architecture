@@ -1,5 +1,7 @@
 ## react-redux-architecture
 
+[live example](https://codebelt.github.io/react-redux-architecture)
+
 ![alt text](./appScreenshot.png 'App Screenshot')
 
 ## Create React App
