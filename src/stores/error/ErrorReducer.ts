@@ -13,10 +13,10 @@ export default class ErrorReducer {
     const { type, error, payload } = action;
 
     /*
-     * Removes a specific error by it's id.
+     * Removes an HttpErrorResponseModel by it's id that is in the action payload.
      */
     if (type === ErrorAction.REMOVE) {
-      // Create a new state without the error that has the same id as the payload
+      // Create a new state without the error that has the same id as the payload.
       return Object.entries(state).reduce((newState: object, [key, value]: [string, HttpErrorResponseModel]) => {
         if (value.id !== payload) {
           newState[key] = value;
@@ -27,35 +27,47 @@ export default class ErrorReducer {
     }
 
     /*
-     * Removes all the stored errors.
+     * Removes all errors by returning the initial state which is an empty object.
      */
     if (type === ErrorAction.CLEAR_ALL) {
       return ErrorReducer.initialState;
     }
 
     /*
-     * If the action type has the key word '_FINISHED' then the start action is complete
+     * True if the action type has the key word '_FINISHED' then the action is finished.
      */
-    const isFinishedRequestType: boolean = type.includes('_FINISHED');
+    const isFinishedRequestType = type.includes('_FINISHED');
     /*
-     * If the action type has the key word 'REQUEST_' and not '_FINISHED' then we
-     * want to remove the old error because there is a new request happening.
+     * True if the action type has the key word 'REQUEST_' and not '_FINISHED'.
      */
-    const isStartRequestType: boolean = type.includes('REQUEST_') && !isFinishedRequestType;
+    const isStartRequestType = type.includes('REQUEST_') && !isFinishedRequestType;
 
+    /*
+     * If an action is started we want to remove any old errors because there is a new action has been re-dispatched.
+     */
     if (isStartRequestType) {
-      // remove the finished type that is associated with the start type because the start action has been re-dispatched
+      // Using ES7 Object Rest Spread operator to omit properties from an object.
       const { [`${type}_FINISHED`]: value, ...stateWithoutFinishedType } = state;
 
       return stateWithoutFinishedType;
     }
 
+    /*
+     * True if the action is finished and the error property is true.
+     */
     const isError: boolean = isFinishedRequestType && Boolean(error);
 
+    /*
+     * For any start and finished actions that don't have errors we return the current state.
+     */
     if (isError === false) {
       return state;
     }
 
+    /*
+     * At this point the "type" will be a finished action type (e.g. "SomeAction.REQUEST_*_FINISHED").
+     * The payload will be a HttpErrorResponseModel.
+     */
     return {
       ...state,
       [type]: payload,
