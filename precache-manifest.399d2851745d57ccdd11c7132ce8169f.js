@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b26d5cc49ee54dc248cf9249213893c6",
+    "revision": "2df1e5809f6653a942c58a413a47abd3",
     "url": "/react-redux-architecture/index.html"
   },
   {
-    "revision": "49fc8b5c9f12bc727e3e",
+    "revision": "59be6bd5c969ad08050e",
     "url": "/react-redux-architecture/static/css/2.f91dc767.chunk.css"
   },
   {
-    "revision": "3c128e032371c31daf09",
+    "revision": "8da910c9530e225598b5",
     "url": "/react-redux-architecture/static/css/3.028c9c03.chunk.css"
   },
   {
-    "revision": "ecd3b44b97f767853242",
+    "revision": "dc5007e21c38a4896a70",
     "url": "/react-redux-architecture/static/css/4.95322d16.chunk.css"
   },
   {
@@ -20,20 +20,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-redux-architecture/static/css/6.be269c2b.chunk.css"
   },
   {
-    "revision": "49b46bb75bdcd2b28c21",
+    "revision": "42b1a10c0efd673d95bb",
     "url": "/react-redux-architecture/static/css/main.facce1e4.chunk.css"
   },
   {
-    "revision": "49fc8b5c9f12bc727e3e",
-    "url": "/react-redux-architecture/static/js/2.d43c7585.chunk.js"
+    "revision": "59be6bd5c969ad08050e",
+    "url": "/react-redux-architecture/static/js/2.4cb9d6bb.chunk.js"
   },
   {
-    "revision": "3c128e032371c31daf09",
-    "url": "/react-redux-architecture/static/js/3.3df68662.chunk.js"
+    "revision": "8da910c9530e225598b5",
+    "url": "/react-redux-architecture/static/js/3.e6a029e1.chunk.js"
   },
   {
-    "revision": "ecd3b44b97f767853242",
-    "url": "/react-redux-architecture/static/js/4.058d980a.chunk.js"
+    "revision": "dc5007e21c38a4896a70",
+    "url": "/react-redux-architecture/static/js/4.93a213ff.chunk.js"
   },
   {
     "revision": "8a9a2ccaae5ed1645615",
@@ -44,16 +44,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-redux-architecture/static/js/6.3fd8bc86.chunk.js"
   },
   {
-    "revision": "2f3806485d0d23c41838",
-    "url": "/react-redux-architecture/static/js/7.f604b15e.chunk.js"
+    "revision": "e2efbcea2ddf932e8863",
+    "url": "/react-redux-architecture/static/js/7.1e4b9d6d.chunk.js"
   },
   {
-    "revision": "49b46bb75bdcd2b28c21",
-    "url": "/react-redux-architecture/static/js/main.64ec6d76.chunk.js"
+    "revision": "42b1a10c0efd673d95bb",
+    "url": "/react-redux-architecture/static/js/main.b6ff913e.chunk.js"
   },
   {
-    "revision": "4727b756f1e31cce9c55",
-    "url": "/react-redux-architecture/static/js/runtime-main.39267791.js"
+    "revision": "e1ba5803ea03a29acd8a",
+    "url": "/react-redux-architecture/static/js/runtime-main.0a4e88b5.js"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
