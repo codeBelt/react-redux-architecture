@@ -1,6 +1,8 @@
 ## react-redux-architecture
 
-[live example](https://codebelt.github.io/react-redux-architecture)
+Prefer TypeScript check out this [branch](https://github.com/codeBelt/react-redux-architecture/tree/TypeScript)
+
+View the running [website](https://codebelt.github.io/react-redux-architecture)
 
 ![alt text](./appScreenshot.png 'App Screenshot')
 
