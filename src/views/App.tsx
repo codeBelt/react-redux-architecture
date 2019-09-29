@@ -20,21 +20,21 @@ interface IProps {
 }
 interface IState {}
 
-export default class App extends React.Component<IProps, IState> {
-  public render(): JSX.Element {
-    return (
-      <ConnectedRouter history={this.props.history}>
-        <Suspense fallback={<LoadingIndicator isActive={true} />}>
-          <MainNav />
-          <Switch>
-            <Route exact={true} path={RouteEnum.Home} component={HomePage} />
-            <Route path={RouteEnum.Episodes} component={EpisodesPage} />
-            <Route path={RouteEnum.About} component={AboutPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-          <Toasts />
-        </Suspense>
-      </ConnectedRouter>
-    );
-  }
-}
+const App: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+  return (
+    <ConnectedRouter history={props.history}>
+      <Suspense fallback={<LoadingIndicator isActive={true} />}>
+        <MainNav />
+        <Switch>
+          <Route exact={true} path={RouteEnum.Home} component={HomePage} />
+          <Route path={RouteEnum.Episodes} component={EpisodesPage} />
+          <Route path={RouteEnum.About} component={AboutPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+        <Toasts />
+      </Suspense>
+    </ConnectedRouter>
+  );
+};
+
+export default App;

@@ -1,7 +1,7 @@
 import { NavLink, NavLinkProps } from 'react-router-dom';
-import * as React from 'react';
+import React from 'react';
 
-const MenuNavLink = (props: NavLinkProps) => {
+const MenuNavLink: React.FC<NavLinkProps> = (props: React.PropsWithChildren<NavLinkProps>) => {
   return <NavLink exact={true} {...props} activeClassName="active" />;
 };
 

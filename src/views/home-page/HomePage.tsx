@@ -1,6 +1,6 @@
 import styles from './HomePage.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import IStore from '../../models/IStore';
 import ShowsAction from '../../stores/shows/ShowsAction';

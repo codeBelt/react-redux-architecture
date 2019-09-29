@@ -10,27 +10,24 @@ interface IProps {
 }
 interface IState {}
 
-export default class LoadingIndicator extends React.PureComponent<IProps, IState> {
-  public static defaultProps: IProps = {
-    isActive: false,
-    className: undefined,
-  };
+const LoadingIndicator: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+  const { isActive = false } = props; // defaultProps example
+  const { className, children } = props;
 
-  public render(): JSX.Element {
-    const { children, isActive, className } = this.props;
-    const cssClasses: string = classNames(className, {
-      [styles.wrapper]: isActive,
-    });
+  const cssClasses: string = classNames(className, {
+    [styles.wrapper]: isActive,
+  });
 
-    return (
-      <div className={cssClasses}>
-        {isActive && (
-          <div className={styles.loaderContainer}>
-            <Loader content="Loading" active={true} inverted={true} size="huge" />
-          </div>
-        )}
-        {children}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={cssClasses}>
+      {isActive && (
+        <div className={styles.loaderContainer}>
+          <Loader content="Loading" active={true} inverted={true} size="huge" />
+        </div>
+      )}
+      {children}
+    </div>
+  );
+};
+
+export default LoadingIndicator;
