@@ -1,39 +1,30 @@
-import React from 'react';
-import { connect, DispatchProp } from 'react-redux';
-import IAction from '../../../../models/IAction';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../../../models/IStore';
 import { Card } from 'semantic-ui-react';
 import CastModel from '../../../../stores/shows/models/cast/CastModel';
 import ShowsAction from '../../../../stores/shows/ShowsAction';
 import ActorCard from './components/actor-card/ActorCard';
+import { Dispatch } from 'redux';
 
 interface IProps {}
-interface IState {}
-interface IStateToProps {
-  readonly actors: CastModel[];
-}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  actors: state.shows.actors,
-});
+const Actors: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+  const dispatch: Dispatch = useDispatch();
 
-class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
-  public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestCast());
-  }
+  useEffect(() => {
+    dispatch(ShowsAction.requestCast());
+  }, [dispatch]);
 
-  public render(): JSX.Element {
-    const { actors } = this.props;
+  const actors: CastModel[] = useSelector((state: IStore) => state.shows.actors);
 
-    return (
-      <Card.Group centered={true}>
-        {actors.map((model: CastModel) => (
-          <ActorCard key={model.person.name} cardData={model} />
-        ))}
-      </Card.Group>
-    );
-  }
-}
+  return (
+    <Card.Group centered={true}>
+      {actors.map((model: CastModel) => (
+        <ActorCard key={model.person.name} cardData={model} />
+      ))}
+    </Card.Group>
+  );
+};
 
-export { Actors as Unconnected };
-export default connect(mapStateToProps)(Actors);
+export default Actors;

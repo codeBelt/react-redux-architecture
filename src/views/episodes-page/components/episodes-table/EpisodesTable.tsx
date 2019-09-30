@@ -7,7 +7,6 @@ import IEpisodeTableRow from '../../../../selectors/episodes/models/IEpisodeTabl
 interface IProps {
   readonly tableData: IEpisodeTable;
 }
-interface IState {}
 
 const EpisodesTable: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
   const { tableData } = props;
