@@ -2,7 +2,7 @@ import IAction from '../models/IAction';
 
 type ReducerMethod<T> = (state: T, action: IAction<any>) => T;
 
-const baseReducer = <T = any>(initialState: T, methods: any) => {
+export default <T = any>(initialState: T, methods: any) => {
   return (state: T = initialState, action: IAction<any>): T => {
     // if the action type is used for a method name then this be a reference to
     // that class method.
@@ -18,5 +18,3 @@ const baseReducer = <T = any>(initialState: T, methods: any) => {
     return method(state, action);
   };
 };
-
-export default baseReducer;

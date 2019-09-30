@@ -6,7 +6,7 @@ import IAction from '../../models/IAction';
 import * as ErrorAction from './ErrorAction';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 
-const initialState: IErrorState = {};
+export const initialState: IErrorState = {};
 
 export default (state: IErrorState = initialState, action: IAction<any>): IErrorState => {
   const { type, error, payload } = action;

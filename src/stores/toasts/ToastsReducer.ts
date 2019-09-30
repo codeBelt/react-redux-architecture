@@ -4,11 +4,11 @@ import IAction from '../../models/IAction';
 import IToast from './models/IToast';
 import baseReducer from '../../utilities/BaseReducer';
 
-const initialState: IToastsState = {
+export const initialState: IToastsState = {
   items: [],
 };
 
-const toastsReducer = baseReducer(initialState, {
+export default baseReducer(initialState, {
   [ToastsAction.ADD_TOAST](state: IToastsState, action: IAction<IToast>): IToastsState {
     return {
       ...state,
@@ -25,5 +25,3 @@ const toastsReducer = baseReducer(initialState, {
     };
   },
 });
-
-export default toastsReducer;

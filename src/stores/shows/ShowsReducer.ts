@@ -6,14 +6,14 @@ import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
 import baseReducer from '../../utilities/BaseReducer';
 
-const initialState: IShowsState = {
+export const initialState: IShowsState = {
   currentShowId: '74',
   show: null,
   episodes: [],
   actors: [],
 };
 
-const showsReducer = baseReducer(initialState, {
+export default baseReducer(initialState, {
   [ShowsAction.REQUEST_SHOW_FINISHED](state: IShowsState, action: IAction<ShowModel>): IShowsState {
     return {
       ...state,
@@ -35,5 +35,3 @@ const showsReducer = baseReducer(initialState, {
     };
   },
 });
-
-export default showsReducer;

@@ -4,7 +4,7 @@
 import IRequestingState from './models/IRequestingState';
 import IAction from '../../models/IAction';
 
-const initialState: IRequestingState = {};
+export const initialState: IRequestingState = {};
 
 export default (state: IRequestingState = initialState, action: IAction<any>): IRequestingState => {
   // We only take actions that include 'REQUEST_' in the type.
