@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
 import CastModel from '../../../../../../stores/shows/models/cast/CastModel';

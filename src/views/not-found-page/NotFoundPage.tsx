@@ -1,6 +1,6 @@
 import styles from './NotFoundPage.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 
 interface IProps {}
 interface IState {}
