@@ -12,15 +12,6 @@ type ActionUnion = undefined | HttpErrorResponseModel | ShowModel | EpisodeModel
 export const REQUEST_SHOW: string = 'ShowsAction.REQUEST_SHOW';
 export const REQUEST_SHOW_FINISHED: string = 'ShowsAction.REQUEST_SHOW_FINISHED';
 
-export const REQUEST_EPISODES: string = 'ShowsAction.REQUEST_EPISODES';
-export const REQUEST_EPISODES_FINISHED: string = 'ShowsAction.REQUEST_EPISODES_FINISHED';
-
-export const REQUEST_CAST: string = 'ShowsAction.REQUEST_CAST';
-export const REQUEST_CAST_FINISHED: string = 'ShowsAction.REQUEST_CAST_FINISHED';
-
-export const REQUEST_ERROR: string = 'ShowsAction.REQUEST_ERROR';
-export const REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
-
 export const requestShow = (): any => {
   return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
     const showId: string = getState().shows.currentShowId;
@@ -28,6 +19,9 @@ export const requestShow = (): any => {
     await ActionUtility.createThunkEffect<ShowModel>(dispatch, REQUEST_SHOW, ShowsEffect.requestShow, showId);
   };
 };
+
+export const REQUEST_EPISODES: string = 'ShowsAction.REQUEST_EPISODES';
+export const REQUEST_EPISODES_FINISHED: string = 'ShowsAction.REQUEST_EPISODES_FINISHED';
 
 export const requestEpisodes = (): any => {
   return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
@@ -37,6 +31,9 @@ export const requestEpisodes = (): any => {
   };
 };
 
+export const REQUEST_CAST: string = 'ShowsAction.REQUEST_CAST';
+export const REQUEST_CAST_FINISHED: string = 'ShowsAction.REQUEST_CAST_FINISHED';
+
 export const requestCast = (): any => {
   return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
     const showId: string = getState().shows.currentShowId;
@@ -44,6 +41,9 @@ export const requestCast = (): any => {
     await ActionUtility.createThunkEffect<CastModel[]>(dispatch, REQUEST_CAST, ShowsEffect.requestCast, showId);
   };
 };
+
+export const REQUEST_ERROR: string = 'ShowsAction.REQUEST_ERROR';
+export const REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
 
 export const requestError = (): any => {
   return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
