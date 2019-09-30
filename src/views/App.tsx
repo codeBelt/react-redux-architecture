@@ -18,7 +18,6 @@ interface IProps {
   readonly history: History;
   readonly dispatch: Dispatch<IAction<any>>;
 }
-interface IState {}
 
 const App: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
   return (

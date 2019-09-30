@@ -8,7 +8,6 @@ interface IProps {
   readonly isActive?: boolean;
   readonly className?: string;
 }
-interface IState {}
 
 const LoadingIndicator: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
   const { isActive = false } = props; // defaultProps example

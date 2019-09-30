@@ -4,7 +4,6 @@ import MenuNavLink from './components/MenuNavLink';
 import RouteEnum from '../../../constants/RouteEnum';
 
 interface IProps {}
-interface IState {}
 
 const MainNav: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
   return (
