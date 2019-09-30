@@ -1,6 +1,6 @@
 import environment from 'environment';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import HttpUtility from '../../utilities/HttpUtility';
+import * as HttpUtility from '../../utilities/HttpUtility';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';

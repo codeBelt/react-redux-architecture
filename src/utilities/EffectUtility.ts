@@ -1,7 +1,7 @@
 import { IConstructor } from '../models/IConstructor';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 import { AxiosResponse } from 'axios';
-import HttpUtility from './HttpUtility';
+import * as HttpUtility from './HttpUtility';
 
 type FlattenIfArray<T> = T extends (infer R)[] ? R : T;
 type SingleItemOrArray<T> = T extends [] ? T[] : T;
