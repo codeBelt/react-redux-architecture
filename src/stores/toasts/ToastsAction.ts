@@ -1,22 +1,20 @@
-import ActionUtility from '../../utilities/ActionUtility';
+import * as ActionUtility from '../../utilities/ActionUtility';
 import IAction from '../../models/IAction';
 import ToastStatusEnum from '../../constants/ToastStatusEnum';
 import IToast from './models/IToast';
 import uuid from 'uuid/v4';
 
-export default class ToastsAction {
-  public static readonly ADD_TOAST: string = 'ToastsAction.ADD_TOAST';
-  public static readonly REMOVE_TOAST: string = 'ToastsAction.REMOVE_TOAST';
+export const ADD_TOAST: string = 'ToastsAction.ADD_TOAST';
+export const REMOVE_TOAST: string = 'ToastsAction.REMOVE_TOAST';
 
-  public static add(message: string, type: ToastStatusEnum): IAction<IToast> {
-    return ActionUtility.createAction(ToastsAction.ADD_TOAST, {
-      message,
-      type,
-      id: uuid(),
-    });
-  }
+export const add = (message: string, type: ToastStatusEnum): IAction<IToast> => {
+  return ActionUtility.createAction(ADD_TOAST, {
+    message,
+    type,
+    id: uuid(),
+  });
+};
 
-  public static removeById(toastId: string): IAction<string> {
-    return ActionUtility.createAction(ToastsAction.REMOVE_TOAST, toastId);
-  }
-}
+export const removeById = (toastId: string): IAction<string> => {
+  return ActionUtility.createAction(REMOVE_TOAST, toastId);
+};

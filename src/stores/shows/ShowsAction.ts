@@ -1,6 +1,6 @@
-import ShowsEffect from './ShowsEffect';
+import * as ShowsEffect from './ShowsEffect';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import ActionUtility from '../../utilities/ActionUtility';
+import * as ActionUtility from '../../utilities/ActionUtility';
 import { ReduxDispatch } from '../../models/ReduxProps';
 import IStore from '../../models/IStore';
 import ShowModel from './models/shows/ShowModel';

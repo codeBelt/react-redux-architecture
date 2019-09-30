@@ -1,5 +1,5 @@
 import IAction from '../../models/IAction';
-import ActionUtility from '../../utilities/ActionUtility';
+import * as ActionUtility from '../../utilities/ActionUtility';
 
 export default class ErrorAction {
   public static readonly CLEAR_ALL: string = 'ErrorAction.CLEAR_ALL';

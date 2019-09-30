@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../../models/IStore';
 import IToast from '../../../stores/toasts/models/IToast';
-import ToastsAction from '../../../stores/toasts/ToastsAction';
+import * as ToastsAction from '../../../stores/toasts/ToastsAction';
 import { Card, Button, ButtonProps, SemanticCOLORS } from 'semantic-ui-react';
 import ToastStatusEnum from '../../../constants/ToastStatusEnum';
 import { Dispatch } from 'redux';

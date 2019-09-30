@@ -7,44 +7,42 @@ import CastModel from './models/cast/CastModel';
 import { AxiosResponse } from 'axios';
 import EffectUtility from '../../utilities/EffectUtility';
 
-export default class ShowsEffect {
-  public static async requestShow(showId: string): Promise<ShowModel | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.shows.replace(':showId', showId);
+export const requestShow = async (showId: string): Promise<ShowModel | HttpErrorResponseModel> => {
+  const endpoint: string = environment.api.shows.replace(':showId', showId);
 
-    return EffectUtility.getToModel<ShowModel>(ShowModel, endpoint);
+  return EffectUtility.getToModel<ShowModel>(ShowModel, endpoint);
+};
+
+export const requestEpisodes = async (showId: string): Promise<EpisodeModel[] | HttpErrorResponseModel> => {
+  const endpoint: string = environment.api.episodes.replace(':showId', showId);
+
+  return EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint);
+};
+
+export const requestCast = async (showId: string): Promise<CastModel[] | HttpErrorResponseModel> => {
+  const endpoint: string = environment.api.cast.replace(':showId', showId);
+
+  // Below is just to show you what the above "requestEpisodes" method is doing with "EffectUtility.getToModel".
+  // In your application you can change this to match the "requestEpisodes" method.
+  const response: AxiosResponse | HttpErrorResponseModel = await HttpUtility.get(endpoint);
+
+  if (response instanceof HttpErrorResponseModel) {
+    return response;
   }
 
-  public static async requestEpisodes(showId: string): Promise<EpisodeModel[] | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.episodes.replace(':showId', showId);
+  return response.data.map((json: Partial<CastModel>) => new CastModel(json));
+};
 
-    return EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint);
+/**
+ * This is only to trigger an error api response so we can use it for an example in the AboutPage
+ */
+export const requestError = async (): Promise<any | HttpErrorResponseModel> => {
+  const endpoint: string = environment.api.errorExample;
+  const response: AxiosResponse | HttpErrorResponseModel = await HttpUtility.get(endpoint);
+
+  if (response instanceof HttpErrorResponseModel) {
+    return response;
   }
 
-  public static async requestCast(showId: string): Promise<CastModel[] | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.cast.replace(':showId', showId);
-
-    // Below is just to show you what the above "requestEpisodes" method is doing with "EffectUtility.getToModel".
-    // In your application you can change this to match the "requestEpisodes" method.
-    const response: AxiosResponse | HttpErrorResponseModel = await HttpUtility.get(endpoint);
-
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-
-    return response.data.map((json: Partial<CastModel>) => new CastModel(json));
-  }
-
-  /**
-   * This is only to trigger an error api response so we can use it for an example in the AboutPage
-   */
-  public static async requestError(): Promise<any | HttpErrorResponseModel> {
-    const endpoint: string = environment.api.errorExample;
-    const response: AxiosResponse | HttpErrorResponseModel = await HttpUtility.get(endpoint);
-
-    if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
-
-    return response.data;
-  }
-}
+  return response.data;
+};

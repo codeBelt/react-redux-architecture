@@ -3,7 +3,7 @@ import ErrorAction from './ErrorAction';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import IAction from '../../models/IAction';
 import IErrorState from './models/IErrorState';
-import ActionUtility from '../../utilities/ActionUtility';
+import * as ActionUtility from '../../utilities/ActionUtility';
 
 describe('ErrorReducer', () => {
   const requestActionType: string = 'SomeAction.REQUEST_SOMETHING';
