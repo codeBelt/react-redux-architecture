@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../models/IStore';
-import ShowsAction from '../../stores/shows/ShowsAction';
+import * as ShowsAction from '../../stores/shows/ShowsAction';
 import { selectEpisodes } from '../../selectors/episodes/EpisodesSelector';
 import IEpisodeTable from '../../selectors/episodes/models/IEpisodeTable';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';

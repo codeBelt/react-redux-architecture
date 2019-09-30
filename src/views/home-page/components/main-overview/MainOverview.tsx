@@ -4,7 +4,7 @@ import IStore from '../../../../models/IStore';
 import { Item } from 'semantic-ui-react';
 import { oc } from 'ts-optchain';
 import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
+import * as ShowsAction from '../../../../stores/shows/ShowsAction';
 import { Dispatch } from 'redux';
 
 interface IProps {}

@@ -9,46 +9,44 @@ import CastModel from './models/cast/CastModel';
 
 type ActionUnion = undefined | HttpErrorResponseModel | ShowModel | EpisodeModel[] | CastModel[];
 
-export default class ShowsAction {
-  public static readonly REQUEST_SHOW: string = 'ShowsAction.REQUEST_SHOW';
-  public static readonly REQUEST_SHOW_FINISHED: string = 'ShowsAction.REQUEST_SHOW_FINISHED';
+export const REQUEST_SHOW: string = 'ShowsAction.REQUEST_SHOW';
+export const REQUEST_SHOW_FINISHED: string = 'ShowsAction.REQUEST_SHOW_FINISHED';
 
-  public static readonly REQUEST_EPISODES: string = 'ShowsAction.REQUEST_EPISODES';
-  public static readonly REQUEST_EPISODES_FINISHED: string = 'ShowsAction.REQUEST_EPISODES_FINISHED';
+export const REQUEST_EPISODES: string = 'ShowsAction.REQUEST_EPISODES';
+export const REQUEST_EPISODES_FINISHED: string = 'ShowsAction.REQUEST_EPISODES_FINISHED';
 
-  public static readonly REQUEST_CAST: string = 'ShowsAction.REQUEST_CAST';
-  public static readonly REQUEST_CAST_FINISHED: string = 'ShowsAction.REQUEST_CAST_FINISHED';
+export const REQUEST_CAST: string = 'ShowsAction.REQUEST_CAST';
+export const REQUEST_CAST_FINISHED: string = 'ShowsAction.REQUEST_CAST_FINISHED';
 
-  public static readonly REQUEST_ERROR: string = 'ShowsAction.REQUEST_ERROR';
-  public static readonly REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
+export const REQUEST_ERROR: string = 'ShowsAction.REQUEST_ERROR';
+export const REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
 
-  public static requestShow(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
-      const showId: string = getState().shows.currentShowId;
+export const requestShow = (): any => {
+  return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    const showId: string = getState().shows.currentShowId;
 
-      await ActionUtility.createThunkEffect<ShowModel>(dispatch, ShowsAction.REQUEST_SHOW, ShowsEffect.requestShow, showId);
-    };
-  }
+    await ActionUtility.createThunkEffect<ShowModel>(dispatch, REQUEST_SHOW, ShowsEffect.requestShow, showId);
+  };
+};
 
-  public static requestEpisodes(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
-      const showId: string = getState().shows.currentShowId;
+export const requestEpisodes = (): any => {
+  return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    const showId: string = getState().shows.currentShowId;
 
-      await ActionUtility.createThunkEffect<EpisodeModel[]>(dispatch, ShowsAction.REQUEST_EPISODES, ShowsEffect.requestEpisodes, showId);
-    };
-  }
+    await ActionUtility.createThunkEffect<EpisodeModel[]>(dispatch, REQUEST_EPISODES, ShowsEffect.requestEpisodes, showId);
+  };
+};
 
-  public static requestCast(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
-      const showId: string = getState().shows.currentShowId;
+export const requestCast = (): any => {
+  return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    const showId: string = getState().shows.currentShowId;
 
-      await ActionUtility.createThunkEffect<CastModel[]>(dispatch, ShowsAction.REQUEST_CAST, ShowsEffect.requestCast, showId);
-    };
-  }
+    await ActionUtility.createThunkEffect<CastModel[]>(dispatch, REQUEST_CAST, ShowsEffect.requestCast, showId);
+  };
+};
 
-  public static requestError(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
-      await ActionUtility.createThunkEffect<any>(dispatch, ShowsAction.REQUEST_ERROR, ShowsEffect.requestError);
-    };
-  }
-}
+export const requestError = (): any => {
+  return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    await ActionUtility.createThunkEffect<any>(dispatch, REQUEST_ERROR, ShowsEffect.requestError);
+  };
+};

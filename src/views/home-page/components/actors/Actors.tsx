@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../../../models/IStore';
 import { Card } from 'semantic-ui-react';
 import CastModel from '../../../../stores/shows/models/cast/CastModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
+import * as ShowsAction from '../../../../stores/shows/ShowsAction';
 import ActorCard from './components/actor-card/ActorCard';
 import { Dispatch } from 'redux';
 

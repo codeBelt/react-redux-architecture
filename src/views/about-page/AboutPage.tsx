@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../models/IStore';
 import { selectErrorText } from '../../selectors/error/ErrorSelector';
-import ShowsAction from '../../stores/shows/ShowsAction';
+import * as ShowsAction from '../../stores/shows/ShowsAction';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
 import { Header, Message, Container } from 'semantic-ui-react';

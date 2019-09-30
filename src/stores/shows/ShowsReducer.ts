@@ -1,6 +1,6 @@
 import BaseReducer from '../../utilities/BaseReducer';
 import IShowsState from './models/IShowsState';
-import ShowsAction from './ShowsAction';
+import * as ShowsAction from './ShowsAction';
 import IAction from '../../models/IAction';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';

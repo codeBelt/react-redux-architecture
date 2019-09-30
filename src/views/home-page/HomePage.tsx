@@ -3,7 +3,7 @@ import styles from './HomePage.module.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import IStore from '../../models/IStore';
-import ShowsAction from '../../stores/shows/ShowsAction';
+import * as ShowsAction from '../../stores/shows/ShowsAction';
 import Actors from './components/actors/Actors';
 import MainOverview from './components/main-overview/MainOverview';
 import { Divider, Icon, Header } from 'semantic-ui-react';
