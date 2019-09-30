@@ -1,5 +1,5 @@
 import ErrorReducer from './ErrorReducer';
-import ErrorAction from './ErrorAction';
+import * as ErrorAction from './ErrorAction';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import IAction from '../../models/IAction';
 import IErrorState from './models/IErrorState';

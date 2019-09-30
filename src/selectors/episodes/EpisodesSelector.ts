@@ -6,33 +6,31 @@ import dayjs from 'dayjs';
 import IEpisodeTable from './models/IEpisodeTable';
 import IEpisodeTableRow from './models/IEpisodeTableRow';
 
-export class EpisodesSelector {
-  public static selectEpisodes(episodes: EpisodeModel[]): IEpisodeTable[] {
-    const seasons: { [season: string]: EpisodeModel[] } = groupBy(episodes, 'season');
+const _selectEpisodes = (episodes: EpisodeModel[]): IEpisodeTable[] => {
+  const seasons: { [season: string]: EpisodeModel[] } = groupBy(episodes, 'season');
 
-    return Object.entries(seasons).map(
-      ([season, models]: [string, EpisodeModel[]]): IEpisodeTable => {
-        return {
-          title: `Season ${season}`,
-          rows: EpisodesSelector._createTableRows(models),
-        };
-      }
-    );
-  }
+  return Object.entries(seasons).map(
+    ([season, models]: [string, EpisodeModel[]]): IEpisodeTable => {
+      return {
+        title: `Season ${season}`,
+        rows: _createTableRows(models),
+      };
+    }
+  );
+};
 
-  private static _createTableRows(models: EpisodeModel[]): IEpisodeTableRow[] {
-    return models.map(
-      (model: EpisodeModel): IEpisodeTableRow => ({
-        episode: model.number,
-        name: model.name,
-        date: dayjs(model.airdate).format('MMM D, YYYY'),
-        image: model.image.medium,
-      })
-    );
-  }
-}
+const _createTableRows = (models: EpisodeModel[]): IEpisodeTableRow[] => {
+  return models.map(
+    (model: EpisodeModel): IEpisodeTableRow => ({
+      episode: model.number,
+      name: model.name,
+      date: dayjs(model.airdate).format('MMM D, YYYY'),
+      image: model.image.medium,
+    })
+  );
+};
 
 export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
   (state: IStore) => state.shows.episodes,
-  EpisodesSelector.selectEpisodes
+  _selectEpisodes
 );

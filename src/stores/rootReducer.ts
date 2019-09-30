@@ -3,14 +3,14 @@ import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import IStore from '../models/IStore';
 import showsReducer from './shows/ShowsReducer';
-import RequestingReducer from './requesting/RequestingReducer';
-import ErrorReducer from './error/ErrorReducer';
+import requestingReducer from './requesting/RequestingReducer';
+import errorReducer from './error/ErrorReducer';
 import toastsReducer from './toasts/ToastsReducer';
 
 export default (history: History): Reducer<IStore> => {
   const reducerMap: ReducersMapObject<IStore> = {
-    error: ErrorReducer.reducer,
-    requesting: RequestingReducer.reducer,
+    error: errorReducer,
+    requesting: requestingReducer,
     router: connectRouter(history) as any,
     shows: showsReducer,
     toasts: toastsReducer,
