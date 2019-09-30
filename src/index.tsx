@@ -17,7 +17,7 @@ import environment from 'environment';
 
   const rootEl: HTMLElement | null = document.getElementById('root');
 
-  const render = (Component: any, el: HTMLElement | null) => {
+  const render = (Component: typeof App, el: HTMLElement | null) => {
     ReactDOM.render(
       <Provider store={store}>
         <Component history={history} dispatch={store.dispatch} />
