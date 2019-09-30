@@ -5,7 +5,7 @@ import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
 import { AxiosResponse } from 'axios';
-import EffectUtility from '../../utilities/EffectUtility';
+import * as EffectUtility from '../../utilities/EffectUtility';
 
 export const requestShow = async (showId: string): Promise<ShowModel | HttpErrorResponseModel> => {
   const endpoint: string = environment.api.shows.replace(':showId', showId);
