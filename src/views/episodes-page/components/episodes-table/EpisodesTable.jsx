@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Header, Table } from 'semantic-ui-react';
 import EpisodesTableRow from '../episodes-table-row/EpisodesTableRow';
 

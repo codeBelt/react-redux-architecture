@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Image, Table } from 'semantic-ui-react';
 
 export default class EpisodesTableRow extends React.PureComponent {

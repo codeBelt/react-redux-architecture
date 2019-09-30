@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import ShowsAction from '../../../../stores/shows/ShowsAction';

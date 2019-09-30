@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import MenuNavLink from './components/MenuNavLink';
 import RouteEnum from '../../../constants/RouteEnum';

@@ -1,6 +1,6 @@
 import styles from './AboutPage.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { selectErrorText } from '../../selectors/error/ErrorSelector';
 import ShowsAction from '../../stores/shows/ShowsAction';

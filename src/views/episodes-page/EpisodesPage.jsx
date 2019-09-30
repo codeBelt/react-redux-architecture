@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ShowsAction from '../../stores/shows/ShowsAction';
 import { selectEpisodes } from '../../selectors/episodes/EpisodesSelector';
