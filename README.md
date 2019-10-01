@@ -1,6 +1,6 @@
 ## react-redux-architecture
 
-View the running [website]
+View the running [website](https://codebelt.github.io/react-redux-architecture/)
 
 Check out the source code in different formats:
 
