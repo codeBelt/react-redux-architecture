@@ -6,7 +6,12 @@ import dayjs from 'dayjs';
 import IEpisodeTable from './models/IEpisodeTable';
 import IEpisodeTableRow from './models/IEpisodeTableRow';
 
-const _selectEpisodes = (episodes: EpisodeModel[]): IEpisodeTable[] => {
+export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
+  (state: IStore) => state.shows.episodes,
+  _selectEpisodes
+);
+
+function _selectEpisodes(episodes: EpisodeModel[]): IEpisodeTable[] {
   const seasons: { [season: string]: EpisodeModel[] } = groupBy(episodes, 'season');
 
   return Object.entries(seasons).map(
@@ -17,9 +22,9 @@ const _selectEpisodes = (episodes: EpisodeModel[]): IEpisodeTable[] => {
       };
     }
   );
-};
+}
 
-const _createTableRows = (models: EpisodeModel[]): IEpisodeTableRow[] => {
+function _createTableRows(models: EpisodeModel[]): IEpisodeTableRow[] {
   return models.map(
     (model: EpisodeModel): IEpisodeTableRow => ({
       episode: model.number,
@@ -28,9 +33,4 @@ const _createTableRows = (models: EpisodeModel[]): IEpisodeTableRow[] => {
       image: model.image.medium,
     })
   );
-};
-
-export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
-  (state: IStore) => state.shows.episodes,
-  _selectEpisodes
-);
+}

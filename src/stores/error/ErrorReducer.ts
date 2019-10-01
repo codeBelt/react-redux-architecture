@@ -5,11 +5,10 @@ import IErrorState from './models/IErrorState';
 import IAction from '../../models/IAction';
 import * as ErrorAction from './ErrorAction';
 import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
-import { Reducer } from 'redux';
 
 export const initialState: IErrorState = {};
 
-const errorReducer: Reducer = (state: IErrorState = initialState, action: IAction<any>): IErrorState => {
+export default function errorReducer(state: IErrorState = initialState, action: IAction<any>): IErrorState {
   const { type, error, payload } = action;
 
   /*
@@ -72,6 +71,4 @@ const errorReducer: Reducer = (state: IErrorState = initialState, action: IActio
     ...state,
     [type]: payload,
   };
-};
-
-export default errorReducer;
+}

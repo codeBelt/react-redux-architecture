@@ -9,7 +9,7 @@ import rootReducer from './rootReducer';
 import IStore from '../models/IStore';
 import errorToastMiddleware from '../middlewares/errorToastMiddleware';
 
-const rootStore = (initialState: Partial<IStore>, history: History): Store<IStore> => {
+export default function rootStore(initialState: Partial<IStore>, history: History): Store<IStore> {
   const middleware: Middleware[] = [environment.isDevelopment ? reduxFreeze : null!, thunk, routerMiddleware(history), errorToastMiddleware()].filter(
     Boolean
   );
@@ -19,6 +19,4 @@ const rootStore = (initialState: Partial<IStore>, history: History): Store<IStor
   // store.subscribe(() => console.log(store.getState()));
 
   return store;
-};
-
-export default rootStore;
+}

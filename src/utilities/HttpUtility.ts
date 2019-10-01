@@ -12,7 +12,7 @@ export enum RequestMethod {
   Patch = 'PATCH',
 }
 
-export const get = async (endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> => {
+export async function get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> {
   const paramsConfig: AxiosRequestConfig | undefined = params ? { params } : undefined;
 
   return _request(
@@ -25,9 +25,9 @@ export const get = async (endpoint: string, params?: any, requestConfig?: AxiosR
       ...requestConfig,
     }
   );
-};
+}
 
-export const post = async (endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> => {
+export async function post(endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> {
   const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
   return _request(
@@ -37,9 +37,9 @@ export const post = async (endpoint: string, data?: any): Promise<AxiosResponse 
     },
     config
   );
-};
+}
 
-export const put = async (endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> => {
+export async function put(endpoint: string, data?: any): Promise<AxiosResponse | HttpErrorResponseModel> {
   const config: AxiosRequestConfig | undefined = data ? { data } : undefined;
 
   return _request(
@@ -49,16 +49,16 @@ export const put = async (endpoint: string, data?: any): Promise<AxiosResponse |
     },
     config
   );
-};
+}
 
-export const del = async (endpoint: string): Promise<AxiosResponse | HttpErrorResponseModel> => {
+export async function del(endpoint: string): Promise<AxiosResponse | HttpErrorResponseModel> {
   return _request({
     url: endpoint,
     method: RequestMethod.Delete,
   });
-};
+}
 
-export const _request = async (restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> => {
+export async function _request(restRequest: Partial<Request>, config?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> {
   if (!Boolean(restRequest.url)) {
     console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);
   }
@@ -137,9 +137,9 @@ export const _request = async (restRequest: Partial<Request>, config?: AxiosRequ
       restRequest
     );
   }
-};
+}
 
-const _fillInErrorWithDefaults = (error: Partial<HttpErrorResponseModel>, request: Partial<Request>): HttpErrorResponseModel => {
+function _fillInErrorWithDefaults(error: Partial<HttpErrorResponseModel>, request: Partial<Request>): HttpErrorResponseModel {
   const model = new HttpErrorResponseModel();
 
   model.status = error.status || 0;
@@ -152,4 +152,4 @@ const _fillInErrorWithDefaults = (error: Partial<HttpErrorResponseModel>, reques
   model.errors = model.errors.filter(Boolean);
 
   return model;
-};
+}

@@ -11,7 +11,7 @@ import { Dispatch } from 'redux';
 
 interface IProps {}
 
-const Toasts: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function Toasts(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> | null {
   const dispatch: Dispatch = useDispatch();
 
   const buttonColorMap: Record<ToastStatusEnum, SemanticCOLORS> = {
@@ -51,6 +51,4 @@ const Toasts: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
       })}
     </div>
   );
-};
-
-export default Toasts;
+}

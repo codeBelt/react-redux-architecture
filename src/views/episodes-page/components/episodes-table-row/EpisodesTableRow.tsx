@@ -6,7 +6,7 @@ interface IProps {
   readonly rowData: IEpisodeTableRow;
 }
 
-const EpisodesTableRow: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function EpisodesTableRow(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const { rowData } = props;
 
   return (
@@ -19,6 +19,4 @@ const EpisodesTableRow: React.FC<IProps> = (props: React.PropsWithChildren<IProp
       <Table.Cell>{rowData.name}</Table.Cell>
     </Table.Row>
   );
-};
-
-export default EpisodesTableRow;
+}

@@ -9,7 +9,7 @@ import { Dispatch } from 'redux';
 
 interface IProps {}
 
-const MainOverview: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function MainOverview(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> | null {
   const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,6 +40,4 @@ const MainOverview: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) 
       </Item>
     </Item.Group>
   );
-};
-
-export default MainOverview;
+}

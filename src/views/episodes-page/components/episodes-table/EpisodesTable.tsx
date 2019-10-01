@@ -8,7 +8,7 @@ interface IProps {
   readonly tableData: IEpisodeTable;
 }
 
-const EpisodesTable: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function EpisodesTable(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const { tableData } = props;
 
   return (
@@ -31,6 +31,4 @@ const EpisodesTable: React.FC<IProps> = (props: React.PropsWithChildren<IProps>)
       </Table>
     </div>
   );
-};
-
-export default EpisodesTable;
+}

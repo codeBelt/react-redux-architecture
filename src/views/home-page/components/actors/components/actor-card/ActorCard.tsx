@@ -7,7 +7,7 @@ interface IProps {
   readonly cardData: CastModel;
 }
 
-const ActorCard: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function ActorCard(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const { cardData } = props;
   const image = oc(cardData).character.image.medium('');
   const missingImage = 'https://react.semantic-ui.com/images/wireframe/image.png';
@@ -24,6 +24,4 @@ const ActorCard: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => 
       </Card.Content>
     </Card>
   );
-};
-
-export default ActorCard;
+}

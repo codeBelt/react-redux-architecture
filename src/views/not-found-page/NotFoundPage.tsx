@@ -4,8 +4,6 @@ import React from 'react';
 
 interface IProps {}
 
-const NotFoundPage: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function NotFoundPage(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   return <div className={styles.wrapper}>Not found page</div>;
-};
-
-export default NotFoundPage;
+}

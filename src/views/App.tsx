@@ -19,7 +19,7 @@ interface IProps {
   readonly dispatch: Dispatch<IAction<any>>;
 }
 
-const App: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function App(props: React.PropsWithChildren<IProps>) {
   return (
     <ConnectedRouter history={props.history}>
       <Suspense fallback={<LoadingIndicator isActive={true} />}>
@@ -34,6 +34,4 @@ const App: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
       </Suspense>
     </ConnectedRouter>
   );
-};
-
-export default App;
+}

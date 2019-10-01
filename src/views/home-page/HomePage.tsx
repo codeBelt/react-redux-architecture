@@ -12,7 +12,7 @@ import { selectRequesting } from '../../selectors/requesting/RequestingSelector'
 
 interface IProps {}
 
-const HomePage: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function HomePage(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const isRequesting: boolean = useSelector((state: IStore) => selectRequesting(state, [ShowsAction.REQUEST_SHOW, ShowsAction.REQUEST_CAST]));
 
   return (
@@ -28,6 +28,4 @@ const HomePage: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
       </LoadingIndicator>
     </div>
   );
-};
-
-export default HomePage;
+}

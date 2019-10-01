@@ -12,7 +12,7 @@ import { Dispatch } from 'redux';
 
 interface IProps {}
 
-const AboutPage: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function AboutPage(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +36,4 @@ const AboutPage: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => 
       </LoadingIndicator>
     </div>
   );
-};
-
-export default AboutPage;
+}

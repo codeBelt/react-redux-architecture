@@ -5,14 +5,14 @@ import IError from '../models/IError';
 import ToastStatusEnum from '../constants/ToastStatusEnum';
 import * as ToastsAction from '../stores/toasts/ToastsAction';
 
-const errorToastMiddleware = (): Middleware => (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>) => {
-  if (action.error) {
-    const errorAction = action as Required<IAction<IError>>;
+export default function errorToastMiddleware(): Middleware {
+  return (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>) => {
+    if (action.error) {
+      const errorAction = action as Required<IAction<IError>>;
 
-    next(ToastsAction.add(errorAction.payload.message, ToastStatusEnum.Error));
-  }
+      next(ToastsAction.add(errorAction.payload.message, ToastStatusEnum.Error));
+    }
 
-  next(action);
-};
-
-export default errorToastMiddleware;
+    next(action);
+  };
+}

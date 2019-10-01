@@ -9,7 +9,7 @@ import { Dispatch } from 'redux';
 
 interface IProps {}
 
-const Actors: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function Actors(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const dispatch: Dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +25,4 @@ const Actors: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
       ))}
     </Card.Group>
   );
-};
-
-export default Actors;
+}

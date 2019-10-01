@@ -5,7 +5,7 @@ import RouteEnum from '../../../constants/RouteEnum';
 
 interface IProps {}
 
-const MainNav: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function MainNav(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   return (
     <Segment inverted={true}>
       <Menu inverted={true} pointing={true} secondary={true}>
@@ -15,6 +15,4 @@ const MainNav: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
       </Menu>
     </Segment>
   );
-};
-
-export default MainNav;
+}
