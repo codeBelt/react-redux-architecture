@@ -9,7 +9,7 @@ interface IProps {
   readonly className?: string;
 }
 
-const LoadingIndicator: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
+export default function LoadingIndicator(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const { isActive = false } = props; // defaultProps example
   const { className, children } = props;
 
@@ -27,6 +27,4 @@ const LoadingIndicator: React.FC<IProps> = (props: React.PropsWithChildren<IProp
       {children}
     </div>
   );
-};
-
-export default LoadingIndicator;
+}
