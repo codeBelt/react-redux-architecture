@@ -7,7 +7,7 @@ import requestingReducer from './requesting/RequestingReducer';
 import errorReducer from './error/ErrorReducer';
 import toastsReducer from './toasts/ToastsReducer';
 
-export default (history: History): Reducer<IStore> => {
+const rootReducer = (history: History): Reducer<IStore> => {
   const reducerMap: ReducersMapObject<IStore> = {
     error: errorReducer,
     requesting: requestingReducer,
@@ -18,3 +18,5 @@ export default (history: History): Reducer<IStore> => {
 
   return combineReducers(reducerMap);
 };
+
+export default rootReducer;

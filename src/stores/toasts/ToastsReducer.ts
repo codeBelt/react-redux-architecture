@@ -3,12 +3,13 @@ import * as ToastsAction from './ToastsAction';
 import IAction from '../../models/IAction';
 import IToast from './models/IToast';
 import baseReducer from '../../utilities/BaseReducer';
+import { Reducer } from 'redux';
 
 export const initialState: IToastsState = {
   items: [],
 };
 
-export default baseReducer(initialState, {
+const toastsReducer: Reducer = baseReducer(initialState, {
   [ToastsAction.ADD_TOAST](state: IToastsState, action: IAction<IToast>): IToastsState {
     return {
       ...state,
@@ -25,3 +26,5 @@ export default baseReducer(initialState, {
     };
   },
 });
+
+export default toastsReducer;

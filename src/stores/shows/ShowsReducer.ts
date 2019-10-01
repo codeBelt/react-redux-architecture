@@ -5,6 +5,7 @@ import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import CastModel from './models/cast/CastModel';
 import baseReducer from '../../utilities/BaseReducer';
+import { Reducer } from 'redux';
 
 export const initialState: IShowsState = {
   currentShowId: '74',
@@ -13,7 +14,7 @@ export const initialState: IShowsState = {
   actors: [],
 };
 
-export default baseReducer(initialState, {
+const showsReducer: Reducer = baseReducer(initialState, {
   [ShowsAction.REQUEST_SHOW_FINISHED](state: IShowsState, action: IAction<ShowModel>): IShowsState {
     return {
       ...state,
@@ -35,3 +36,5 @@ export default baseReducer(initialState, {
     };
   },
 });
+
+export default showsReducer;

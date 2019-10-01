@@ -3,10 +3,11 @@
  */
 import IRequestingState from './models/IRequestingState';
 import IAction from '../../models/IAction';
+import { Reducer } from 'redux';
 
 export const initialState: IRequestingState = {};
 
-export default (state: IRequestingState = initialState, action: IAction<any>): IRequestingState => {
+const requestingReducer: Reducer = (state: IRequestingState = initialState, action: IAction<any>): IRequestingState => {
   // We only take actions that include 'REQUEST_' in the type.
   const isRequestType: boolean = action.type.includes('REQUEST_');
 
@@ -25,3 +26,5 @@ export default (state: IRequestingState = initialState, action: IAction<any>): I
     [requestName]: isFinishedRequestType === false,
   };
 };
+
+export default requestingReducer;
