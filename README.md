@@ -1,6 +1,14 @@
 ## react-redux-architecture
 
-View the running [website](https://codebelt.github.io/react-redux-architecture). Prefer TypeScript check out this [branch](https://github.com/codeBelt/react-redux-architecture/tree/TypeScript)
+View the running [website]
+
+Check out the source code in different formats:
+
+ * [React/Redux (TypeScript — Classes)](https://github.com/codeBelt/react-redux-architecture/tree/TypeScript)
+ * [React/Redux (JavaScript — Classes)](https://github.com/codeBelt/react-redux-architecture/tree/JavaScript)
+ * [React Hooks/Redux (TypeScript — Functional)](https://github.com/codeBelt/react-redux-architecture/tree/ts/function)
+ * [React Hooks/Redux (JavaScript — Functional)](https://github.com/codeBelt/react-redux-architecture/tree/js/function)
+
 
 ![alt text](./appScreenshot.png 'App Screenshot')
 
