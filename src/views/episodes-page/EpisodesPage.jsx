@@ -14,7 +14,7 @@ export default function EpisodesPage(props) {
   }, [dispatch]);
 
   const isRequesting = useSelector((state) => selectRequesting(state, [ShowsAction.REQUEST_EPISODES]));
-  const episodeTables = useSelector((state) => selectEpisodes(state));
+  const episodeTables = useSelector(selectEpisodes);
 
   return (
     <>
