@@ -19,7 +19,7 @@ export default function EpisodesPage(props: React.PropsWithChildren<IProps>): Re
   }, [dispatch]);
 
   const isRequesting: boolean = useSelector((state: IStore) => selectRequesting(state, [ShowsAction.REQUEST_EPISODES]));
-  const episodeTables: IEpisodeTable[] = useSelector((state: IStore) => selectEpisodes(state));
+  const episodeTables: IEpisodeTable[] = useSelector(selectEpisodes);
 
   return (
     <>
