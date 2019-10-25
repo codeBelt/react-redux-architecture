@@ -1,6 +1,6 @@
 import styles from './Toasts.module.scss';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../../models/IStore';
 import IToast from '../../../stores/toasts/models/IToast';
@@ -22,13 +22,16 @@ const Toasts: React.FC<IProps> = (props: React.PropsWithChildren<IProps>) => {
 
   const toasts: IToast[] = useSelector((state: IStore) => state.toasts.items);
 
+  const onClickRemoveNotification = useCallback(
+    (id: string) => (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void => {
+      dispatch(ToastsAction.removeById(id));
+    },
+    [dispatch]
+  );
+
   if (toasts.length === 0) {
     return null;
   }
-
-  const onClickRemoveNotification = (id: string) => (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void => {
-    dispatch(ToastsAction.removeById(id));
-  };
 
   return (
     <div className={styles.wrapper}>
