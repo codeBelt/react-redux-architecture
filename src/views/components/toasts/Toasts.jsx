@@ -1,6 +1,6 @@
 import styles from './Toasts.module.scss';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as ToastsAction from '../../../stores/toasts/ToastsAction';
 import { Card, Button } from 'semantic-ui-react';
@@ -17,13 +17,16 @@ export default function Toasts(props) {
 
   const toasts = useSelector((state) => state.toasts.items);
 
+  const onClickRemoveNotification = useCallback(
+    (id) => (event, data) => {
+      dispatch(ToastsAction.removeById(id));
+    },
+    [dispatch]
+  );
+
   if (toasts.length === 0) {
     return null;
   }
-
-  const onClickRemoveNotification = (id) => (event, data) => {
-    dispatch(ToastsAction.removeById(id));
-  };
 
   return (
     <div className={styles.wrapper}>
