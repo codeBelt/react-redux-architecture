@@ -19,7 +19,7 @@ interface IProps {
   readonly dispatch: Dispatch<IAction<any>>;
 }
 
-export default function App(props: React.PropsWithChildren<IProps>) {
+export default function App(props: React.PropsWithChildren<IProps>): JSX.Element {
   return (
     <ConnectedRouter history={props.history}>
       <Suspense fallback={<LoadingIndicator isActive={true} />}>

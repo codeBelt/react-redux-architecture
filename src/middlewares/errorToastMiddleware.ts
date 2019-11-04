@@ -6,7 +6,7 @@ import ToastStatusEnum from '../constants/ToastStatusEnum';
 import * as ToastsAction from '../stores/toasts/ToastsAction';
 
 export default function errorToastMiddleware(): Middleware {
-  return (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>) => {
+  return (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>): void => {
     if (action.error) {
       const errorAction = action as Required<IAction<IError>>;
 
