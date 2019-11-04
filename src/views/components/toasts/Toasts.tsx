@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { ReduxProps } from '../../../models/ReduxProps';
 import IStore from '../../../models/IStore';
 import IToast from '../../../stores/toasts/models/IToast';
-import ToastsAction from '../../../stores/toasts/ToastsAction';
-import { Card, Button, ButtonProps, SemanticCOLORS } from 'semantic-ui-react';
-import ToastStatusEnum from '../../../constants/ToastStatusEnum';
+import ToastCard from '../toast-card/ToastCard';
 
 interface IProps {}
 interface IState {}
@@ -20,12 +18,6 @@ const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
 });
 
 class Toasts extends React.Component<IProps & IStateToProps & ReduxProps<any>, IState> {
-  public buttonColorMap: Record<ToastStatusEnum, SemanticCOLORS> = {
-    [ToastStatusEnum.Error]: 'red',
-    [ToastStatusEnum.Warning]: 'orange',
-    [ToastStatusEnum.Success]: 'green',
-  };
-
   public render(): JSX.Element | null {
     const { toasts } = this.props;
 
@@ -35,30 +27,12 @@ class Toasts extends React.Component<IProps & IStateToProps & ReduxProps<any>, I
 
     return (
       <div className={styles.wrapper}>
-        {toasts.map((item: IToast) => {
-          const buttonColor: SemanticCOLORS = this.buttonColorMap[item.type];
-
-          return (
-            <Card key={item.id}>
-              <Card.Content>
-                <Card.Header content={item.type} />
-                <Card.Description content={item.message} />
-              </Card.Content>
-              <Card.Content extra={true}>
-                <Button color={buttonColor} onClick={this._onClickRemoveNotification(item.id)}>
-                  Close
-                </Button>
-              </Card.Content>
-            </Card>
-          );
-        })}
+        {toasts.map((model: IToast) => (
+          <ToastCard key={model.id} item={model} />
+        ))}
       </div>
     );
   }
-
-  private _onClickRemoveNotification = (id: string) => (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void => {
-    this.props.dispatch(ToastsAction.removeById(id));
-  };
 }
 
 export { Toasts as Unconnected };
