@@ -5,7 +5,7 @@ import IError from '../models/IError';
 import ToastStatusEnum from '../constants/ToastStatusEnum';
 import ToastsAction from '../stores/toasts/ToastsAction';
 
-const errorToastMiddleware = (): Middleware => (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>) => {
+const errorToastMiddleware = (): Middleware => (store: MiddlewareAPI<Dispatch, IStore>) => (next: Dispatch) => (action: IAction<any>): void => {
   if (action.error) {
     const errorAction = action as Required<IAction<IError>>;
 

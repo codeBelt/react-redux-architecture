@@ -3,6 +3,7 @@
  * Add everything here and override value in other files if needed.
  */
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function(baseApi: string) {
   return {
     route: {

@@ -23,7 +23,7 @@ export default class ShowsAction {
   public static readonly REQUEST_ERROR_FINISHED: string = 'ShowsAction.REQUEST_ERROR_FINISHED';
 
   public static requestShow(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore): Promise<void> => {
       const showId: string = getState().shows.currentShowId;
 
       await ActionUtility.createThunkEffect<ShowModel>(dispatch, ShowsAction.REQUEST_SHOW, ShowsEffect.requestShow, showId);
@@ -31,7 +31,7 @@ export default class ShowsAction {
   }
 
   public static requestEpisodes(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore): Promise<void> => {
       const showId: string = getState().shows.currentShowId;
 
       await ActionUtility.createThunkEffect<EpisodeModel[]>(dispatch, ShowsAction.REQUEST_EPISODES, ShowsEffect.requestEpisodes, showId);
@@ -39,7 +39,7 @@ export default class ShowsAction {
   }
 
   public static requestCast(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore): Promise<void> => {
       const showId: string = getState().shows.currentShowId;
 
       await ActionUtility.createThunkEffect<CastModel[]>(dispatch, ShowsAction.REQUEST_CAST, ShowsEffect.requestCast, showId);
@@ -47,7 +47,7 @@ export default class ShowsAction {
   }
 
   public static requestError(): any {
-    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore) => {
+    return async (dispatch: ReduxDispatch<ActionUnion>, getState: () => IStore): Promise<void> => {
       await ActionUtility.createThunkEffect<any>(dispatch, ShowsAction.REQUEST_ERROR, ShowsEffect.requestError);
     };
   }
