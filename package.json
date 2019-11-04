@@ -20,7 +20,7 @@
     "test": "cross-env CLIENT_ENV=test craco test",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "--------------------------------------------------------------------------------------------------------": ""
   },
   "eslintConfig": {
