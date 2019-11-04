@@ -1,4 +1,5 @@
 // https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project
+// https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/docs/rules
 
 module.exports = {
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
@@ -18,7 +19,13 @@ module.exports = {
   },
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    // 0 = off, 1 = warn, 2 = error
+    '@typescript-eslint/interface-name-prefix': 0,
+    '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-unused-vars': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-inferrable-types': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
   },
   settings: {
     react: {

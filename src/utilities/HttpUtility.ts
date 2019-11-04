@@ -13,6 +13,7 @@ export enum RequestMethod {
 }
 
 export default class HttpUtility {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
   public static async get(endpoint: string, params?: any, requestConfig?: AxiosRequestConfig): Promise<AxiosResponse | HttpErrorResponseModel> {
