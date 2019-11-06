@@ -2,6 +2,12 @@
   "name": "react-typescript",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "post-commit": "git update-index -g"
+    }
+  },
   "scripts": {
     "---------- HELPERS -------------------------------------------------------------------------------------": "",
     "generate": "node ./tools/generate.js",
