@@ -3,7 +3,6 @@ import { connect, DispatchProp } from 'react-redux';
 import IStore from '../../../../models/IStore';
 import IAction from '../../../../models/IAction';
 import { Item } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
 import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
 import ShowsAction from '../../../../stores/shows/ShowsAction';
 
@@ -29,8 +28,8 @@ class MainOverview extends React.Component<IProps & IStateToProps & DispatchProp
       return null;
     }
 
-    const image: string = oc(show).image.medium('');
-    const network: string = oc(show).network.name('');
+    const image: string = show?.image?.medium ?? '';
+    const network: string = show?.network?.name ?? '';
 
     return (
       <Item.Group>
