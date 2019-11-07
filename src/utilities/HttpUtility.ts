@@ -77,7 +77,7 @@ export default class HttpUtility {
           ...oc(config).headers(undefined),
         },
       };
-      const axiosResponse: AxiosResponse = await axios(axiosRequestConfig);
+      const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
 
       const { status, data, request } = axiosResponse;
 
@@ -156,5 +156,18 @@ export default class HttpUtility {
     model.errors = model.errors.filter(Boolean);
 
     return model;
+  }
+
+  /**
+   * We want to show the loading indicator to the user but sometimes the api
+   * request finished too quickly. This makes sure there the loading indicator is
+   * visual for at least a given time.
+   *
+   * @param duration
+   * @returns {Promise<unknown>}
+   * @private
+   */
+  private static _delay(duration: number = 250): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, duration));
   }
 }
