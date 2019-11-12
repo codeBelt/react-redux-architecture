@@ -162,6 +162,6 @@ function _fillInErrorWithDefaults(error, request) {
  * @returns {Promise<void>}
  * @private
  */
-function _delay(duration) {
+function _delay(duration = 250) {
   return new Promise((resolve) => setTimeout(resolve, duration));
 }
