@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Item } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
 import * as ShowsAction from '../../../../stores/shows/ShowsAction';
 
 export default function MainOverview(props) {
@@ -17,8 +16,8 @@ export default function MainOverview(props) {
     return null;
   }
 
-  const image = oc(show).image.medium('');
-  const network = oc(show).network.name('');
+  const image = show?.image?.medium ?? '';
+  const network = show?.network?.name ?? '';
 
   return (
     <Item.Group>
