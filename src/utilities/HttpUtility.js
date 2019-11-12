@@ -1,6 +1,5 @@
 import axios from 'axios';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
-import { oc } from 'ts-optchain';
 
 const RequestMethod = {
   Get: 'GET',
@@ -71,7 +70,7 @@ export default class HttpUtility {
         url: restRequest.url,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          ...oc(config).headers(undefined),
+          ...config?.headers,
         },
       };
 

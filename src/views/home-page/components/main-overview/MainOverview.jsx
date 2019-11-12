@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Item } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
 import ShowsAction from '../../../../stores/shows/ShowsAction';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -20,8 +19,8 @@ class MainOverview extends React.Component {
       return null;
     }
 
-    const image = oc(show).image.medium('');
-    const network = oc(show).network.name('');
+    const image = show?.image?.medium ?? '';
+    const network = show?.network?.name ?? '';
 
     return (
       <Item.Group>
