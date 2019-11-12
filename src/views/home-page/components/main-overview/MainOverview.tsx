@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IStore from '../../../../models/IStore';
 import { Item } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
 import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
 import * as ShowsAction from '../../../../stores/shows/ShowsAction';
 import { Dispatch } from 'redux';
@@ -22,8 +21,8 @@ export default function MainOverview(props: React.PropsWithChildren<IProps>): Re
     return null;
   }
 
-  const image: string = oc(show).image.medium('');
-  const network: string = oc(show).network.name('');
+  const image: string = show?.image?.medium ?? '';
+  const network: string = show?.network?.name ?? '';
 
   return (
     <Item.Group>

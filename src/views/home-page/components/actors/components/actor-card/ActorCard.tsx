@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
-import { oc } from 'ts-optchain';
 import CastModel from '../../../../../../stores/shows/models/cast/CastModel';
 
 interface IProps {
@@ -9,8 +8,8 @@ interface IProps {
 
 export default function ActorCard(props: React.PropsWithChildren<IProps>): React.FunctionComponentElement<IProps> {
   const { cardData } = props;
-  const image = oc(cardData).character.image.medium('');
-  const missingImage = 'https://react.semantic-ui.com/images/wireframe/image.png';
+  const image: string = cardData?.character?.image?.medium;
+  const missingImage: string = 'https://react.semantic-ui.com/images/wireframe/image.png';
 
   return (
     <Card key={cardData.person.name}>
