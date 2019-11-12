@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
-import { oc } from 'ts-optchain';
 
 export enum RequestMethod {
   Get = 'GET',
@@ -74,7 +73,7 @@ export default class HttpUtility {
         url: restRequest.url,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          ...oc(config).headers(undefined),
+          ...config?.headers,
         },
       };
       const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
