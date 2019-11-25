@@ -13,18 +13,18 @@ const requestingInterceptorMiddleware: Middleware = (store: MiddlewareAPI<Dispat
   const isStartRequestType: boolean = action.type.includes('REQUEST_') && !isFinishedRequestType;
 
   if (isStartRequestType) {
-    actionTypeTimeStampMap.set(action.type, new Date().getTime());
+    actionTypeTimeStampMap.set(action.type, performance.now());
   }
 
   if (!action.error && isRequestType && isFinishedRequestType) {
     const minimumDelay: number = 500;
     const startRequestType: string = action.type.replace('_FINISHED', '');
-    const dateTimeStarted: number = actionTypeTimeStampMap.get(startRequestType) ?? new Date().getTime();
+    const timeNow: number = performance.now();
+    const timeStarted: number = actionTypeTimeStampMap.get(startRequestType) ?? timeNow;
 
     actionTypeTimeStampMap.delete(startRequestType);
 
-    const dateTimeNow: number = new Date().getTime();
-    const latency: number = dateTimeNow - dateTimeStarted;
+    const latency: number = timeNow - timeStarted;
     const remainder: number = minimumDelay - latency;
     const shouldDelayResponse: boolean = latency < minimumDelay;
 
