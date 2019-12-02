@@ -9,6 +9,9 @@ Check out the source code in different formats:
  * [React Hooks/Redux (TypeScript — Functions)](https://github.com/codeBelt/react-redux-architecture/tree/ts/function)
  * [React Hooks/Redux (JavaScript — Functions)](https://github.com/codeBelt/react-redux-architecture/tree/js/function)
  * [React Hooks/Redux (TypeScript — Arrows)](https://github.com/codeBelt/react-redux-architecture/tree/ts/arrows)
+ 
+ Read the article explaining this code:
+ [My Awesome React Redux Structure](https://medium.com/better-programming/my-awesome-react-redux-structure-6044e5007e22)
 
 ![alt text](./appScreenshot.png 'App Screenshot')
 
