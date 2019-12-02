@@ -8,11 +8,16 @@ import environment from 'environment';
 import rootReducer from './rootReducer';
 import IStore from '../models/IStore';
 import errorToastMiddleware from '../middlewares/errorToastMiddleware';
+import requestingInterceptorMiddleware from '../middlewares/requestingInterceptorMiddleware';
 
 export default (initialState: Partial<IStore>, history: History): Store<IStore> => {
-  const middleware: Middleware[] = [environment.isDevelopment ? reduxFreeze : null!, thunk, routerMiddleware(history), errorToastMiddleware()].filter(
-    Boolean
-  );
+  const middleware: Middleware[] = [
+    environment.isDevelopment ? reduxFreeze : null!,
+    thunk,
+    routerMiddleware(history),
+    requestingInterceptorMiddleware,
+    errorToastMiddleware(),
+  ].filter(Boolean);
 
   const store: Store<IStore> = createStore(rootReducer(history), initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
