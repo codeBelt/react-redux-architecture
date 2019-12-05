@@ -13,7 +13,6 @@ interface IState {}
 
 export default class HomePage extends React.Component<IProps, IState> {
   public render(): JSX.Element {
-    console.log(``, this.props);
     return (
       <div className={styles.wrapper}>
         <LoadingIndicator isActive={false}>
