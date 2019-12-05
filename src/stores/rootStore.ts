@@ -1,7 +1,7 @@
 import { RouterStore } from 'mobx-react-router';
 import ShowsStore from './shows/ShowsStore';
 
-class RootStore {
+export class RootStore {
   userStore: ShowsStore = new ShowsStore(this);
   routingStore: RouterStore = new RouterStore();
 }

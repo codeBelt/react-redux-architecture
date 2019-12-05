@@ -1,5 +1,4 @@
-import { action, computed, observable } from 'mobx';
-import RootStore from '../../RootStore';
+import { action, computed, observable, runInAction } from 'mobx';
 import CastModel from './models/cast/CastModel';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
@@ -11,6 +10,7 @@ import groupBy from 'lodash.groupby';
 import IEpisodeTable from './computed/IEpisodeTable';
 import IEpisodeTableRow from './computed/IEpisodeTableRow';
 import dayjs from 'dayjs';
+import { RootStore } from '../rootStore';
 
 export default class ShowsStore {
   @observable currentShowId: string = '74';
@@ -33,7 +33,9 @@ export default class ShowsStore {
       return response;
     }
 
-    this.show = response;
+    runInAction(() => {
+      this.show = response;
+    });
   }
 
   @action
@@ -45,7 +47,9 @@ export default class ShowsStore {
       return response;
     }
 
-    this.episodes = response;
+    runInAction(() => {
+      this.episodes = response;
+    });
   }
 
   @action
@@ -57,7 +61,9 @@ export default class ShowsStore {
       return response;
     }
 
-    this.actors = response;
+    runInAction(() => {
+      this.actors = response;
+    });
   }
 
   /**

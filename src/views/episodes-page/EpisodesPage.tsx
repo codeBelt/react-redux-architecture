@@ -2,8 +2,8 @@ import React from 'react';
 import IEpisodeTable from '../../stores/shows/computed/IEpisodeTable';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
 import EpisodesTable from './components/episodes-table/EpisodesTable';
-import RootStore from '../../RootStore';
 import { inject, observer } from 'mobx-react';
+import { RootStore } from '../../stores/rootStore';
 
 interface IProps {
   rootStore?: RootStore;

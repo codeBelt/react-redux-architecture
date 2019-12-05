@@ -8,8 +8,9 @@ import environment from 'environment';
 import { Provider } from 'mobx-react';
 import { syncHistoryWithStore } from 'mobx-react-router';
 import { rootStore } from './stores/rootStore';
+import { configure } from 'mobx';
 
-// configure({ enforceActions: "always" });
+configure({ enforceActions: 'always' }); // https://mobx.js.org/refguide/api.html#enforceactions
 
 (async (window: Window): Promise<void> => {
   // const initialState: Partial<unknown> = {};

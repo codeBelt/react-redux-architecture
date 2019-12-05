@@ -3,8 +3,8 @@ import styles from './AboutPage.module.scss';
 import React from 'react';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
 import { Header, Container } from 'semantic-ui-react';
-import RootStore from '../../RootStore';
 import { inject, observer } from 'mobx-react';
+import { RootStore } from '../../stores/rootStore';
 
 interface IProps {
   rootStore?: RootStore;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Item } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import RootStore from '../../../../RootStore';
+import { RootStore } from '../../../../stores/rootStore';
 
 interface IProps {
   rootStore?: RootStore;
