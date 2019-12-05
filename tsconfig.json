@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true
   },
   "include": ["src"]
 }

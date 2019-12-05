@@ -1,29 +1,24 @@
 import React from 'react';
-import { connect, DispatchProp } from 'react-redux';
-import IAction from '../../../../models/IAction';
-import IStore from '../../../../models/IStore';
 import { Card } from 'semantic-ui-react';
 import CastModel from '../../../../stores/shows/models/cast/CastModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
 import ActorCard from './components/actor-card/ActorCard';
+import { inject, observer } from 'mobx-react';
+import RootStore from '../../../../RootStore';
 
-interface IProps {}
-interface IState {}
-interface IStateToProps {
-  readonly actors: CastModel[];
+interface IProps {
+  rootStore?: RootStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  actors: state.shows.actors,
-});
-
-class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+@inject('rootStore')
+@observer
+export default class Actors extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestCast());
+    this.props.rootStore?.userStore.requestCast();
   }
 
   public render(): JSX.Element {
-    const { actors } = this.props;
+    const { actors } = this.props.rootStore?.userStore!;
 
     return (
       <Card.Group centered={true}>
@@ -34,6 +29,3 @@ class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IActi
     );
   }
 }
-
-export { Actors as Unconnected };
-export default connect(mapStateToProps)(Actors);

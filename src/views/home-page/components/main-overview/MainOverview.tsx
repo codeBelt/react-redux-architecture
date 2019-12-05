@@ -1,28 +1,22 @@
 import React from 'react';
-import { connect, DispatchProp } from 'react-redux';
-import IStore from '../../../../models/IStore';
-import IAction from '../../../../models/IAction';
 import { Item } from 'semantic-ui-react';
-import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
+import { inject, observer } from 'mobx-react';
+import RootStore from '../../../../RootStore';
 
-interface IProps {}
-interface IState {}
-interface IStateToProps {
-  readonly show: ShowModel | null;
+interface IProps {
+  rootStore?: RootStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  show: state.shows.show,
-});
-
-class MainOverview extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+@inject('rootStore')
+@observer
+export default class MainOverview extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestShow());
+    this.props.rootStore?.userStore.requestShow();
   }
 
   public render(): JSX.Element | null {
-    const { show } = this.props;
+    const { show } = this.props.rootStore?.userStore!;
 
     if (!show) {
       return null;
@@ -48,6 +42,3 @@ class MainOverview extends React.Component<IProps & IStateToProps & DispatchProp
     );
   }
 }
-
-export { MainOverview as Unconnected };
-export default connect(mapStateToProps)(MainOverview);

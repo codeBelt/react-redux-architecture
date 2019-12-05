@@ -1,38 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import IStore from '../../models/IStore';
-import ShowsAction from '../../stores/shows/ShowsAction';
-import { selectEpisodes } from '../../selectors/episodes/EpisodesSelector';
-import IEpisodeTable from '../../selectors/episodes/models/IEpisodeTable';
-import { ReduxProps } from '../../models/ReduxProps';
+import IEpisodeTable from '../../stores/shows/computed/IEpisodeTable';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import EpisodesTable from './components/episodes-table/EpisodesTable';
+import RootStore from '../../RootStore';
+import { inject, observer } from 'mobx-react';
 
-interface IProps {}
-interface IState {}
-interface IRouteParams {}
-interface IStateToProps {
-  readonly episodeTables: IEpisodeTable[];
-  readonly isRequesting: boolean;
+interface IProps {
+  rootStore?: RootStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  episodeTables: selectEpisodes(state),
-  isRequesting: selectRequesting(state, [ShowsAction.REQUEST_EPISODES]),
-});
-
-class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
+@inject('rootStore')
+@observer
+export default class EpisodesPage extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestEpisodes());
+    this.props.rootStore?.userStore.requestEpisodes();
   }
 
   public render(): JSX.Element {
-    const { episodeTables, isRequesting } = this.props;
+    const episodeTables = this.props.rootStore?.userStore!.selectEpisodes;
 
     return (
       <>
-        <LoadingIndicator isActive={isRequesting} />
+        <LoadingIndicator isActive={false} />
         {episodeTables.map((model: IEpisodeTable) => (
           <EpisodesTable key={model.title} tableData={model} />
         ))}
@@ -40,6 +30,3 @@ class EpisodesPage extends React.Component<IProps & IStateToProps & ReduxProps<a
     );
   }
 }
-
-export { EpisodesPage as Unconnected };
-export default connect(mapStateToProps)(EpisodesPage);
