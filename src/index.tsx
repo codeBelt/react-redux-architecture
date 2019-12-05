@@ -15,7 +15,6 @@ configure({ enforceActions: 'always' }); // https://mobx.js.org/refguide/api.htm
 (async (window: Window): Promise<void> => {
   // const initialState: Partial<unknown> = {};
   const browserHistory: History = createBrowserHistory({ basename: environment.route.baseRoute });
-
   const history = syncHistoryWithStore(browserHistory, rootStore.routingStore);
 
   const rootEl: HTMLElement | null = document.getElementById('root');

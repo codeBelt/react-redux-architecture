@@ -19,7 +19,7 @@ export default class App extends React.Component<IProps, IState> {
   public render(): JSX.Element {
     return (
       <Router history={this.props.history}>
-        <Suspense fallback={<LoadingIndicator isActive={false} />}>
+        <Suspense fallback={<LoadingIndicator isActive={true} />}>
           <MainNav />
           <Switch>
             <Route exact={true} path={RouteEnum.Home} component={HomePage} />
