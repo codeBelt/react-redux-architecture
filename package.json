@@ -50,6 +50,7 @@
     "lodash.groupby": "4.6.0",
     "mobx": "5.15.0",
     "mobx-react": "6.1.4",
+    "mobx-react-router": "4.0.7",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-redux": "7.1.3",
