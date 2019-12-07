@@ -4,18 +4,18 @@ import React from 'react';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
 import { Header, Container } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import { RootStore } from '../../stores/rootStore';
+import ShowsStore from '../../stores/shows/ShowsStore';
 
 interface IProps {
-  rootStore?: RootStore;
+  showsStore?: ShowsStore;
 }
 interface IState {}
 
-@inject('rootStore')
+@inject('showsStore')
 @observer
 export default class AboutPage extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.rootStore?.userStore.requestError();
+    this.props.showsStore!.requestError();
   }
 
   public render(): JSX.Element {

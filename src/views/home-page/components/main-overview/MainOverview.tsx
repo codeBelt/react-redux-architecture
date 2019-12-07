@@ -1,22 +1,22 @@
 import React from 'react';
 import { Item } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import { RootStore } from '../../../../stores/rootStore';
+import ShowsStore from '../../../../stores/shows/ShowsStore';
 
 interface IProps {
-  rootStore?: RootStore;
+  showsStore?: ShowsStore;
 }
 interface IState {}
 
-@inject('rootStore')
+@inject('showsStore')
 @observer
 export default class MainOverview extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.rootStore?.userStore.requestShow();
+    this.props.showsStore!.requestShow();
   }
 
   public render(): JSX.Element | null {
-    const { show } = this.props.rootStore?.userStore!;
+    const { show } = this.props.showsStore!;
 
     if (!show) {
       return null;

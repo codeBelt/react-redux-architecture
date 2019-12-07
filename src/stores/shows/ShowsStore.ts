@@ -11,6 +11,7 @@ import IEpisodeTable from './computed/IEpisodeTable';
 import IEpisodeTableRow from './computed/IEpisodeTableRow';
 import dayjs from 'dayjs';
 import { RootStore } from '../rootStore';
+import ToastStatusEnum from '../../constants/ToastStatusEnum';
 
 export default class ShowsStore {
   @observable currentShowId: string = '74';
@@ -25,12 +26,12 @@ export default class ShowsStore {
   }
 
   @action
-  async requestShow() {
+  async requestShow(): Promise<void> {
     const endpoint = environment.api.shows.replace(':showId', this.currentShowId);
     const response = await EffectUtility.getToModel<ShowModel>(ShowModel, endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
-      return response;
+      return;
     }
 
     runInAction(() => {
@@ -39,12 +40,12 @@ export default class ShowsStore {
   }
 
   @action
-  async requestEpisodes() {
+  async requestEpisodes(): Promise<void> {
     const endpoint = environment.api.episodes.replace(':showId', this.currentShowId);
     const response = await EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
-      return response;
+      return;
     }
 
     runInAction(() => {
@@ -53,12 +54,12 @@ export default class ShowsStore {
   }
 
   @action
-  async requestCast() {
+  async requestCast(): Promise<void> {
     const endpoint = environment.api.cast.replace(':showId', this.currentShowId);
     const response = await EffectUtility.getToModel<CastModel[]>(CastModel, endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
-      return response;
+      return;
     }
 
     runInAction(() => {
@@ -70,19 +71,19 @@ export default class ShowsStore {
    * This is only to trigger an error api response so we can use it for an example in the AboutPage
    */
   @action
-  async requestError() {
+  async requestError(): Promise<void> {
     const endpoint = environment.api.errorExample;
     const response = await HttpUtility.get(endpoint);
 
     if (response instanceof HttpErrorResponseModel) {
-      return response;
-    }
+      this._rootStore.toastsStore.add(response.message, ToastStatusEnum.Error);
 
-    return response.data;
+      return;
+    }
   }
 
   @computed
-  get selectEpisodes() {
+  get selectEpisodes(): IEpisodeTable[] {
     const seasons: { [season: string]: EpisodeModel[] } = groupBy(this.episodes, 'season');
 
     return Object.entries(seasons).map(
