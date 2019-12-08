@@ -21,7 +21,7 @@ export default class ToastsStore {
       id: uuid(),
     };
 
-    this.items = [...this.items, item];
+    this.items.push(item);
   }
 
   @action
