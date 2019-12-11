@@ -64,8 +64,8 @@ export default class ShowsStore extends BaseStore {
 
   @computed
   get isRequestingShowAndCast(): boolean {
-    const { isRequesting: isRequestingCast } = this.actors!;
-    const { isRequesting: isRequestingShow } = this.show!;
+    const { isRequesting: isRequestingCast } = this.actors;
+    const { isRequesting: isRequestingShow } = this.show;
 
     return [isRequestingCast, isRequestingShow].some(Boolean);
   }
