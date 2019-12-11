@@ -1,9 +1,8 @@
-import { action, computed, observable, runInAction } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import CastModel from './models/cast/CastModel';
 import ShowModel from './models/shows/ShowModel';
 import EpisodeModel from './models/episodes/EpisodeModel';
 import environment from 'environment';
-import HttpErrorResponseModel from '../../models/HttpErrorResponseModel';
 import EffectUtility from '../../utilities/EffectUtility';
 import HttpUtility from '../../utilities/HttpUtility';
 import groupBy from 'lodash.groupby';
@@ -15,10 +14,10 @@ import { initialRequestStatus, IRequestStatus } from '../../models/IRequestStatu
 
 export default class ShowsStore extends BaseStore {
   @observable currentShowId: string = '74';
-  @observable show: IRequestStatus<ShowModel | null> = initialRequestStatus;
-  @observable episodes: EpisodeModel[] = [];
-  @observable actors: CastModel[] = [];
-  @observable errorExample: IRequestStatus<null> = initialRequestStatus;
+  @observable show: IRequestStatus<ShowModel | null> = initialRequestStatus(null);
+  @observable episodes: IRequestStatus<EpisodeModel[]> = initialRequestStatus([]);
+  @observable actors: IRequestStatus<CastModel[]> = initialRequestStatus([]);
+  @observable errorExample: IRequestStatus<null> = initialRequestStatus(null);
 
   @action
   async requestShow(): Promise<void> {
@@ -26,36 +25,28 @@ export default class ShowsStore extends BaseStore {
 
     await this.requestAction<ShowModel>(
       () => EffectUtility.getToModel<ShowModel[]>(ShowModel, endpoint),
-      (status) => (this.show = status)
+      (status: IRequestStatus<ShowModel | null>) => (this.show = status)
     );
   }
 
   @action
   async requestEpisodes(): Promise<void> {
     const endpoint = environment.api.episodes.replace(':showId', this.currentShowId);
-    const response = await EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint);
 
-    if (response instanceof HttpErrorResponseModel) {
-      return;
-    }
-
-    runInAction(() => {
-      this.episodes = response;
-    });
+    await this.requestAction<EpisodeModel[]>(
+      () => EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint),
+      (status: IRequestStatus<EpisodeModel[]>) => (this.episodes = status)
+    );
   }
 
   @action
   async requestCast(): Promise<void> {
     const endpoint = environment.api.cast.replace(':showId', this.currentShowId);
-    const response = await EffectUtility.getToModel<CastModel[]>(CastModel, endpoint);
 
-    if (response instanceof HttpErrorResponseModel) {
-      return;
-    }
-
-    runInAction(() => {
-      this.actors = response;
-    });
+    await this.requestAction<CastModel[]>(
+      () => EffectUtility.getToModel<CastModel[]>(CastModel, endpoint),
+      (status: IRequestStatus<CastModel[]>) => (this.actors = status)
+    );
   }
 
   /**
@@ -73,7 +64,7 @@ export default class ShowsStore extends BaseStore {
 
   @computed
   get selectEpisodes(): IEpisodeTable[] {
-    const seasons: { [season: string]: EpisodeModel[] } = groupBy(this.episodes, 'season');
+    const seasons: { [season: string]: EpisodeModel[] } = groupBy(this.episodes.data, 'season');
 
     return Object.entries(seasons).map(
       ([season, models]: [string, EpisodeModel[]]): IEpisodeTable => {

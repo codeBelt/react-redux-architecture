@@ -11,10 +11,10 @@ export default class BaseStore {
     this.rootStore = rootStore;
   }
 
-  async requestAction<P>(effect: () => Promise<any>, prop: (requestData: IRequestStatus<P>) => void) {
-    const status = {
-      ...initialRequestStatus,
-      isLoading: true,
+  async requestAction<T>(effect: () => Promise<any>, prop: (requestData: IRequestStatus<T>) => void) {
+    const status: IRequestStatus<any> = {
+      ...initialRequestStatus(null),
+      isRequesting: true,
     };
 
     runInAction(() => prop(status));
@@ -29,7 +29,7 @@ export default class BaseStore {
       status.data = response;
     }
 
-    status.isLoading = false;
+    status.isRequesting = false;
 
     runInAction(() => prop(status));
   }

@@ -18,11 +18,12 @@ export default class EpisodesPage extends React.Component<IProps, IState> {
   }
 
   public render(): JSX.Element {
+    const { isRequesting } = this.props.showsStore?.episodes!;
     const episodeTables = this.props.showsStore!.selectEpisodes;
 
     return (
       <>
-        <LoadingIndicator isActive={false} />
+        <LoadingIndicator isActive={isRequesting} />
         {episodeTables.map((model: IEpisodeTable) => (
           <EpisodesTable key={model.title} tableData={model} />
         ))}

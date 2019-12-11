@@ -17,12 +17,16 @@ export default class Actors extends React.Component<IProps, IState> {
     this.props.showsStore!.requestCast();
   }
 
-  public render(): JSX.Element {
-    const { actors } = this.props.showsStore!;
+  public render(): JSX.Element | null {
+    const { data, error } = this.props.showsStore?.actors!;
+
+    if (!data || error) {
+      return null;
+    }
 
     return (
       <Card.Group centered={true}>
-        {actors.map((model: CastModel) => (
+        {data.map((model: CastModel) => (
           <ActorCard key={model.person.name} cardData={model} />
         ))}
       </Card.Group>
