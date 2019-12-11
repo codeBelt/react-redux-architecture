@@ -16,26 +16,26 @@ export default class MainOverview extends React.Component<IProps, IState> {
   }
 
   public render(): JSX.Element | null {
-    const { show } = this.props.showsStore!;
+    const { data, error } = this.props.showsStore!.show;
 
-    if (!show) {
+    if (!data || error) {
       return null;
     }
 
-    const image: string = show?.image?.medium ?? '';
-    const network: string = show?.network?.name ?? '';
+    const image: string = data.image?.medium ?? '';
+    const network: string = data.network?.name ?? '';
 
     return (
       <Item.Group>
         <Item>
           <Item.Image src={image} />
           <Item.Content>
-            <Item.Header as="a">{show.name}</Item.Header>
+            <Item.Header as="a">{data.name}</Item.Header>
             <Item.Meta>{network}</Item.Meta>
             <Item.Description>
-              <div dangerouslySetInnerHTML={{ __html: show.summary }} />
+              <div dangerouslySetInnerHTML={{ __html: data.summary }} />
             </Item.Description>
-            <Item.Extra>{show.genres.join(' | ')}</Item.Extra>
+            <Item.Extra>{data.genres.join(' | ')}</Item.Extra>
           </Item.Content>
         </Item>
       </Item.Group>
