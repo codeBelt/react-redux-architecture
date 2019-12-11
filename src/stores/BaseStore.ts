@@ -1,8 +1,8 @@
 import { RootStore } from './rootStore';
 import { runInAction } from 'mobx';
-import HttpUtility from '../utilities/HttpUtility';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
 import { initialRequestStatus, IRequestStatus } from '../models/IRequestStatus';
+import ToastStatusEnum from '../constants/ToastStatusEnum';
 
 export default class BaseStore {
   protected rootStore: RootStore;
@@ -11,7 +11,7 @@ export default class BaseStore {
     this.rootStore = rootStore;
   }
 
-  async setRequestAction<P>(endpoint: string, prop: (requestData: IRequestStatus<P>) => void) {
+  async requestAction<P>(effect: () => Promise<any>, prop: (requestData: IRequestStatus<P>) => void) {
     const status = {
       ...initialRequestStatus,
       isLoading: true,
@@ -19,12 +19,14 @@ export default class BaseStore {
 
     runInAction(() => prop(status));
 
-    const response = await HttpUtility.get(endpoint);
+    const response = await effect();
 
     if (response instanceof HttpErrorResponseModel) {
       status.error = response;
+
+      this.rootStore.toastsStore.add(response.message, ToastStatusEnum.Error);
     } else {
-      status.data = response.data;
+      status.data = response;
     }
 
     status.isLoading = false;

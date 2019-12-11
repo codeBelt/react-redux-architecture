@@ -10,7 +10,6 @@ import groupBy from 'lodash.groupby';
 import IEpisodeTable from './computed/IEpisodeTable';
 import IEpisodeTableRow from './computed/IEpisodeTableRow';
 import dayjs from 'dayjs';
-import ToastStatusEnum from '../../constants/ToastStatusEnum';
 import BaseStore from '../BaseStore';
 import { initialRequestStatus, IRequestStatus } from '../../models/IRequestStatus';
 
@@ -19,12 +18,16 @@ export default class ShowsStore extends BaseStore {
   @observable show: IRequestStatus<ShowModel | null> = initialRequestStatus;
   @observable episodes: EpisodeModel[] = [];
   @observable actors: CastModel[] = [];
+  @observable errorExample: IRequestStatus<null> = initialRequestStatus;
 
   @action
   async requestShow(): Promise<void> {
     const endpoint = environment.api.shows.replace(':showId', this.currentShowId);
 
-    await this.setRequestAction<ShowModel>(endpoint, (status) => (this.show = status));
+    await this.requestAction<ShowModel>(
+      () => EffectUtility.getToModel<ShowModel[]>(ShowModel, endpoint),
+      (status) => (this.show = status)
+    );
   }
 
   @action
@@ -61,13 +64,11 @@ export default class ShowsStore extends BaseStore {
   @action
   async requestError(): Promise<void> {
     const endpoint = environment.api.errorExample;
-    const response = await HttpUtility.get(endpoint);
 
-    if (response instanceof HttpErrorResponseModel) {
-      this.rootStore.toastsStore.add(response.message, ToastStatusEnum.Error);
-
-      return;
-    }
+    await this.requestAction<null>(
+      () => HttpUtility.get(endpoint),
+      (status) => (this.errorExample = status)
+    );
   }
 
   @computed
