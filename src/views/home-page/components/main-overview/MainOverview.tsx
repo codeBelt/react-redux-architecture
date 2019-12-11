@@ -1,53 +1,44 @@
 import React from 'react';
-import { connect, DispatchProp } from 'react-redux';
-import IStore from '../../../../models/IStore';
-import IAction from '../../../../models/IAction';
 import { Item } from 'semantic-ui-react';
-import ShowModel from '../../../../stores/shows/models/shows/ShowModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
+import { inject, observer } from 'mobx-react';
+import ShowsStore from '../../../../stores/shows/ShowsStore';
 
-interface IProps {}
-interface IState {}
-interface IStateToProps {
-  readonly show: ShowModel | null;
+interface IProps {
+  showsStore?: ShowsStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  show: state.shows.show,
-});
-
-class MainOverview extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+@inject('showsStore')
+@observer
+export default class MainOverview extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestShow());
+    this.props.showsStore!.requestShow();
   }
 
   public render(): JSX.Element | null {
-    const { show } = this.props;
+    const { data, error } = this.props.showsStore!.show;
 
-    if (!show) {
+    if (!data || error) {
       return null;
     }
 
-    const image: string = show?.image?.medium ?? '';
-    const network: string = show?.network?.name ?? '';
+    const image: string = data.image?.medium ?? '';
+    const network: string = data.network?.name ?? '';
 
     return (
       <Item.Group>
         <Item>
           <Item.Image src={image} />
           <Item.Content>
-            <Item.Header as="a">{show.name}</Item.Header>
+            <Item.Header as="a">{data.name}</Item.Header>
             <Item.Meta>{network}</Item.Meta>
             <Item.Description>
-              <div dangerouslySetInnerHTML={{ __html: show.summary }} />
+              <div dangerouslySetInnerHTML={{ __html: data.summary }} />
             </Item.Description>
-            <Item.Extra>{show.genres.join(' | ')}</Item.Extra>
+            <Item.Extra>{data.genres.join(' | ')}</Item.Extra>
           </Item.Content>
         </Item>
       </Item.Group>
     );
   }
 }
-
-export { MainOverview as Unconnected };
-export default connect(mapStateToProps)(MainOverview);

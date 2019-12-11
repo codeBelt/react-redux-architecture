@@ -1,39 +1,35 @@
 import React from 'react';
-import { connect, DispatchProp } from 'react-redux';
-import IAction from '../../../../models/IAction';
-import IStore from '../../../../models/IStore';
 import { Card } from 'semantic-ui-react';
 import CastModel from '../../../../stores/shows/models/cast/CastModel';
-import ShowsAction from '../../../../stores/shows/ShowsAction';
 import ActorCard from './components/actor-card/ActorCard';
+import { inject, observer } from 'mobx-react';
+import ShowsStore from '../../../../stores/shows/ShowsStore';
 
-interface IProps {}
-interface IState {}
-interface IStateToProps {
-  readonly actors: CastModel[];
+interface IProps {
+  showsStore?: ShowsStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  actors: state.shows.actors,
-});
-
-class Actors extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
+@inject('showsStore')
+@observer
+export default class Actors extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestCast());
+    this.props.showsStore!.requestCast();
   }
 
-  public render(): JSX.Element {
-    const { actors } = this.props;
+  public render(): JSX.Element | null {
+    const { data, error } = this.props.showsStore!.actors;
+
+    if (!data || error) {
+      return null;
+    }
 
     return (
       <Card.Group centered={true}>
-        {actors.map((model: CastModel) => (
+        {data.map((model: CastModel) => (
           <ActorCard key={model.person.name} cardData={model} />
         ))}
       </Card.Group>
     );
   }
 }
-
-export { Actors as Unconnected };
-export default connect(mapStateToProps)(Actors);

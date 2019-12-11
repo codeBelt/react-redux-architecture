@@ -1,23 +1,21 @@
 // import styles from './ToastCard.module.scss';
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import IStore from '../../../models/IStore';
-import { ReduxProps } from '../../../models/ReduxProps';
 import { Button, ButtonProps, Card, SemanticCOLORS } from 'semantic-ui-react';
 import ToastStatusEnum from '../../../constants/ToastStatusEnum';
 import IToast from '../../../stores/toasts/models/IToast';
-import ToastsAction from '../../../stores/toasts/ToastsAction';
+import { inject, observer } from 'mobx-react';
+import ToastsStore from '../../../stores/toasts/ToastsStore';
 
 interface IProps {
   readonly item: IToast;
+  readonly toastsStore?: ToastsStore;
 }
 interface IState {}
-interface IStateToProps {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({});
-
-class ToastCard extends React.Component<IProps & IStateToProps & ReduxProps<any>, IState> {
+@inject('toastsStore')
+@observer
+export default class ToastCard extends React.PureComponent<IProps, IState> {
   public buttonColorMap: Record<ToastStatusEnum, SemanticCOLORS> = {
     [ToastStatusEnum.Error]: 'red',
     [ToastStatusEnum.Warning]: 'orange',
@@ -44,9 +42,6 @@ class ToastCard extends React.Component<IProps & IStateToProps & ReduxProps<any>
   }
 
   private _onClickRemoveNotification = (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void => {
-    this.props.dispatch(ToastsAction.removeById(this.props.item.id));
+    this.props.toastsStore!.remove(this.props.item.id);
   };
 }
-
-export { ToastCard as Unconnected };
-export default connect(mapStateToProps)(ToastCard);

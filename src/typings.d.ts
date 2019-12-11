@@ -1,4 +1,3 @@
-declare module 'redux-freeze';
 declare module 'lodash.groupby';
 
 declare module 'environment' {

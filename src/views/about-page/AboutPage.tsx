@@ -1,35 +1,25 @@
 import styles from './AboutPage.module.scss';
 
 import React from 'react';
-import { connect } from 'react-redux';
-import IStore from '../../models/IStore';
-import { ReduxProps } from '../../models/ReduxProps';
-import { selectErrorText } from '../../selectors/error/ErrorSelector';
-import ShowsAction from '../../stores/shows/ShowsAction';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
 import LoadingIndicator from '../components/loading-indicator/LoadingIndicator';
-import { Header, Message, Container } from 'semantic-ui-react';
+import { Header, Container, Message } from 'semantic-ui-react';
+import { inject, observer } from 'mobx-react';
+import ShowsStore from '../../stores/shows/ShowsStore';
 
-interface IProps {}
-interface IState {}
-interface IRouteParams {}
-interface IStateToProps {
-  readonly isRequesting: boolean;
-  readonly requestErrorText: string;
+interface IProps {
+  showsStore?: ShowsStore;
 }
+interface IState {}
 
-const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
-  isRequesting: selectRequesting(state, [ShowsAction.REQUEST_ERROR]),
-  requestErrorText: selectErrorText(state, [ShowsAction.REQUEST_ERROR_FINISHED]),
-});
-
-class AboutPage extends React.Component<IProps & IStateToProps & ReduxProps<any, IRouteParams>, IState> {
+@inject('showsStore')
+@observer
+export default class AboutPage extends React.Component<IProps, IState> {
   public componentDidMount(): void {
-    this.props.dispatch(ShowsAction.requestError());
+    this.props.showsStore!.requestError();
   }
 
   public render(): JSX.Element {
-    const { isRequesting, requestErrorText } = this.props;
+    const { isRequesting, error } = this.props.showsStore!.errorExample!;
 
     return (
       <div className={styles.wrapper}>
@@ -41,12 +31,9 @@ class AboutPage extends React.Component<IProps & IStateToProps & ReduxProps<any,
               we create a custom error message.
             </p>
           </Container>
-          {requestErrorText && <Message info={true} header="Error" content="Sorry there was an error requesting this content." />}
+          {error && <Message info={true} header="Error" content="Sorry there was an error requesting this content." />}
         </LoadingIndicator>
       </div>
     );
   }
 }
-
-export { AboutPage as Unconnected };
-export default connect(mapStateToProps)(AboutPage);
