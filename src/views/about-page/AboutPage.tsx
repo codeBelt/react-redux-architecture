@@ -19,7 +19,7 @@ export default class AboutPage extends React.Component<IProps, IState> {
   }
 
   public render(): JSX.Element {
-    const { isRequesting, error } = this.props.showsStore?.errorExample!;
+    const { isRequesting, error } = this.props.showsStore!.errorExample!;
 
     return (
       <div className={styles.wrapper}>

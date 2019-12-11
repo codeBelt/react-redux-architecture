@@ -18,7 +18,7 @@ export default class Actors extends React.Component<IProps, IState> {
   }
 
   public render(): JSX.Element | null {
-    const { data, error } = this.props.showsStore?.actors!;
+    const { data, error } = this.props.showsStore!.actors;
 
     if (!data || error) {
       return null;
