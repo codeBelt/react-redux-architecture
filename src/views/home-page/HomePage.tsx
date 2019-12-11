@@ -19,9 +19,7 @@ interface IState {}
 @observer
 export default class HomePage extends React.Component<IProps, IState> {
   public render(): JSX.Element {
-    const { isRequesting: isRequestingCast } = this.props.showsStore?.actors!;
-    const { isRequesting: isRequestingShow } = this.props.showsStore?.show!;
-    const isRequesting: boolean = [isRequestingCast, isRequestingShow].some(Boolean);
+    const isRequesting = this.props.showsStore?.isRequestingShowAndCast;
 
     return (
       <div className={styles.wrapper}>

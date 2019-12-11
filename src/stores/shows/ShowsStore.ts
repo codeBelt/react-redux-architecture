@@ -63,6 +63,14 @@ export default class ShowsStore extends BaseStore {
   }
 
   @computed
+  get isRequestingShowAndCast(): boolean {
+    const { isRequesting: isRequestingCast } = this.actors!;
+    const { isRequesting: isRequestingShow } = this.show!;
+
+    return [isRequestingCast, isRequestingShow].some(Boolean);
+  }
+
+  @computed
   get selectEpisodes(): IEpisodeTable[] {
     const seasons: { [season: string]: EpisodeModel[] } = groupBy(this.episodes.data, 'season');
 
