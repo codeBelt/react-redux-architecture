@@ -24,8 +24,8 @@ export default class ShowsStore extends BaseStore {
     const endpoint = environment.api.shows.replace(':showId', this.currentShowId);
 
     await this.requestAction<ShowModel>(
-      () => EffectUtility.getToModel<ShowModel[]>(ShowModel, endpoint),
-      (status: IRequestStatus<ShowModel | null>) => (this.show = status)
+      (status: IRequestStatus<ShowModel | null>) => (this.show = status),
+      EffectUtility.getToModel<ShowModel[]>(ShowModel, endpoint)
     );
   }
 
@@ -34,8 +34,8 @@ export default class ShowsStore extends BaseStore {
     const endpoint = environment.api.episodes.replace(':showId', this.currentShowId);
 
     await this.requestAction<EpisodeModel[]>(
-      () => EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint),
-      (status: IRequestStatus<EpisodeModel[]>) => (this.episodes = status)
+      (status: IRequestStatus<EpisodeModel[]>) => (this.episodes = status),
+      EffectUtility.getToModel<EpisodeModel[]>(EpisodeModel, endpoint)
     );
   }
 
@@ -44,8 +44,8 @@ export default class ShowsStore extends BaseStore {
     const endpoint = environment.api.cast.replace(':showId', this.currentShowId);
 
     await this.requestAction<CastModel[]>(
-      () => EffectUtility.getToModel<CastModel[]>(CastModel, endpoint),
-      (status: IRequestStatus<CastModel[]>) => (this.actors = status)
+      (status: IRequestStatus<CastModel[]>) => (this.actors = status),
+      EffectUtility.getToModel<CastModel[]>(CastModel, endpoint)
     );
   }
 
@@ -56,10 +56,7 @@ export default class ShowsStore extends BaseStore {
   async requestError(): Promise<void> {
     const endpoint = environment.api.errorExample;
 
-    await this.requestAction<null>(
-      () => HttpUtility.get(endpoint),
-      (status) => (this.errorExample = status)
-    );
+    await this.requestAction<null>((status) => (this.errorExample = status), HttpUtility.get(endpoint));
   }
 
   @computed
