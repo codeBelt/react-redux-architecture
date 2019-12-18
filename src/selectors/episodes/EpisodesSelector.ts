@@ -6,10 +6,7 @@ import dayjs from 'dayjs';
 import IEpisodeTable from './models/IEpisodeTable';
 import IEpisodeTableRow from './models/IEpisodeTableRow';
 
-export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
-  (state: IStore) => state.shows.episodes,
-  _selectEpisodes
-);
+export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector((state: IStore) => state.shows.episodes, _selectEpisodes);
 
 function _selectEpisodes(episodes: EpisodeModel[]): IEpisodeTable[] {
   const seasons: { [season: string]: EpisodeModel[] } = groupBy(episodes, 'season');
