@@ -2,10 +2,7 @@ import { createSelector } from 'reselect';
 import groupBy from 'lodash.groupby';
 import dayjs from 'dayjs';
 
-export const selectEpisodes = createSelector(
-  (state) => state.shows.episodes,
-  _selectEpisodes
-);
+export const selectEpisodes = createSelector((state) => state.shows.episodes, _selectEpisodes);
 
 function _selectEpisodes(episodes) {
   const seasons = groupBy(episodes, 'season');
