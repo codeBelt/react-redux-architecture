@@ -24,7 +24,4 @@ export class EpisodesSelector {
   }
 }
 
-export const selectEpisodes = createSelector(
-  (state) => state.shows.episodes,
-  EpisodesSelector.selectEpisodes
-);
+export const selectEpisodes = createSelector((state) => state.shows.episodes, EpisodesSelector.selectEpisodes);
