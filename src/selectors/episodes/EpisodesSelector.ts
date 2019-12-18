@@ -30,7 +30,4 @@ const _createTableRows = (models: EpisodeModel[]): IEpisodeTableRow[] => {
   );
 };
 
-export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector(
-  (state: IStore) => state.shows.episodes,
-  _selectEpisodes
-);
+export const selectEpisodes: Selector<IStore, IEpisodeTable[]> = createSelector((state: IStore) => state.shows.episodes, _selectEpisodes);
