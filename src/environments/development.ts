@@ -1,9 +1,9 @@
-import environment from './base';
+import environment, { Environment } from './base';
 
 const baseApi = 'https://api.tvmaze.com';
 const env = environment(baseApi);
 
-export default {
+const developmentEnv: Environment = {
   ...env,
   // override anything that gets added from base.
   api: {
@@ -14,3 +14,5 @@ export default {
   isProduction: false,
   isDevelopment: true,
 };
+
+export default developmentEnv;
