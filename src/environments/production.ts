@@ -1,4 +1,4 @@
-import environment from './base';
+import environment, { Environment } from './base';
 
 /*
  * base.ts is the default environment for production.
@@ -8,10 +8,12 @@ import environment from './base';
 const baseApi = 'https://api.tvmaze.com';
 const env = environment(baseApi);
 
-export default {
+const productionEnv: Environment = {
   ...env,
   route: {
     ...env.route,
     baseRoute: '/react-redux-architecture', // Fixes issue with Github Pages
   },
 };
+
+export default productionEnv;
