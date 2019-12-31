@@ -14,7 +14,7 @@ const rootStore = (initialState: Partial<IStore>, history: History): Store<IStor
     Boolean
   );
 
-  const store: Store<IStore> = createStore(rootReducer(history), initialState, composeWithDevTools(applyMiddleware(...middleware)));
+  const store: Store<IStore> = createStore(rootReducer(history), initialState as any, composeWithDevTools(applyMiddleware(...middleware)));
 
   // store.subscribe(() => console.log(store.getState()));
 
