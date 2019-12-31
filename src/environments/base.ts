@@ -1,10 +1,9 @@
 /*
  * Base is the default environment for production.
  * Add everything here and override value in other files if needed.
+ * https://blog.usejournal.com/my-awesome-custom-react-environment-variables-setup-8ebb0797d8ac
  */
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default function(baseApi: string) {
+export default function baseEnv(baseApi: string) {
   return {
     route: {
       baseRoute: '',
@@ -17,5 +16,8 @@ export default function(baseApi: string) {
     },
     isProduction: true,
     isDevelopment: false,
+    isTesting: false,
   };
 }
+
+export type Environment = ReturnType<typeof baseEnv>;

@@ -2,20 +2,8 @@ declare module 'redux-freeze';
 declare module 'lodash.groupby';
 
 declare module 'environment' {
-  const value: {
-    route: {
-      baseRoute: string;
-    };
-    api: {
-      shows: string;
-      episodes: string;
-      cast: string;
-      errorExample: string;
-    };
-    isDevelopment: boolean;
-    isProduction: boolean;
-    isTesting?: boolean;
-  };
+  import baseEnv from './environments/base';
+  const value: ReturnType<typeof baseEnv>;
 
   export default value;
 }
