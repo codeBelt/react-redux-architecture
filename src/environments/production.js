@@ -8,10 +8,12 @@ import environment from './base';
 const baseApi = 'https://api.tvmaze.com';
 const env = environment(baseApi);
 
-export default {
+const productionEnv = {
   ...env,
   route: {
     ...env.route,
     baseRoute: '/react-redux-architecture', // Fixes issue with Github Pages
   },
 };
+
+export default productionEnv;
