@@ -1,3 +1,6 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 import './index.scss';
 
 import React from 'react';
@@ -16,7 +19,6 @@ import environment from 'environment';
   const store: Store<IStore> = rootStore(initialState, history);
 
   const rootEl: HTMLElement | null = document.getElementById('root');
-
   const render = (Component: typeof App, el: HTMLElement | null): void => {
     ReactDOM.render(
       <Provider store={store}>
