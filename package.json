@@ -21,8 +21,8 @@
     "deploy": "gh-pages -d build",
     "---------- TESTING -------------------------------------------------------------------------------------": "",
     "test": "cross-env CLIENT_ENV=test craco test",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
+    "ts": "tsc --noEmit",
+    "ts:watch": "npm run ts -- --watch",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "--------------------------------------------------------------------------------------------------------": ""
   },
@@ -67,6 +67,7 @@
     "@types/classnames": "2.2.9",
     "@types/history": "4.7.3",
     "@types/jest": "24.0.25",
+    "@types/lodash.groupby": "4.6.6",
     "@types/node": "13.1.2",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
