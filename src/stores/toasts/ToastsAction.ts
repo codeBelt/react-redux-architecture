@@ -2,7 +2,7 @@ import ActionUtility from '../../utilities/ActionUtility';
 import IAction from '../../models/IAction';
 import ToastStatusEnum from '../../constants/ToastStatusEnum';
 import IToast from './models/IToast';
-import uuid from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class ToastsAction {
   public static readonly ADD_TOAST: string = 'ToastsAction.ADD_TOAST';
@@ -12,7 +12,7 @@ export default class ToastsAction {
     return ActionUtility.createAction(ToastsAction.ADD_TOAST, {
       message,
       type,
-      id: uuid(),
+      id: uuidv4(),
     });
   }
 
