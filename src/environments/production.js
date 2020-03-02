@@ -10,10 +10,7 @@ const env = environment(baseApi);
 
 const productionEnv = {
   ...env,
-  route: {
-    ...env.route,
-    baseRoute: '/react-redux-architecture', // Fixes issue with Github Pages
-  },
+  // override anything that gets added from base.
 };
 
 export default productionEnv;

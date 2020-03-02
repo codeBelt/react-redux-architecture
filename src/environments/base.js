@@ -6,7 +6,7 @@
 export default function baseEnv(baseApi) {
   return {
     route: {
-      baseRoute: '',
+      baseRoute: '/react-redux-architecture', // Fixes issue with Github Pages
     },
     api: {
       cast: `${baseApi}/shows/:showId/cast`,
