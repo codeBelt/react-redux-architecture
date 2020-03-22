@@ -89,6 +89,7 @@
     "generate-template-files": "2.2.1",
     "gh-pages": "2.2.0",
     "husky": "4.2.3",
+    "nock": "12.0.3",
     "node-sass": "4.13.1",
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1",
