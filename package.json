@@ -42,7 +42,7 @@
     ]
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "classnames": "2.2.6",
     "connected-react-router": "6.7.0",
     "dayjs": "1.8.21",
